@@ -1,0 +1,7 @@
+input line-height不管用
+react 子组件改变父组件的状态，通过事件触发，子组件调用父组件里的方法，并以传参的形式将子组件中的state传递给父组件
+弹出框和蒙层可以不是父子关系
+react在原有的className上动态添加className <div className={`container tab ${index===this.state.currentIndex?"active":null}`}>此标签是否选中</div>
+react同时绑定两个事件
+react数组双重循环
+给定一个数，生成这个数为长度的数组 Array.apply(null,Array(totalPage)).map((item,index)=>index)

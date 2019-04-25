@@ -1,0 +1,50 @@
+.sj-point {
+	.img-wrap {
+		margin-top:20px;
+		.img {
+			width:100%;
+			height:314px;
+		}
+	}
+	.title {
+		text-align:center;
+		font-size:40px;
+		color:#e73b12;
+		font-weight:bold;
+		margin-top:37px;
+	}
+	.con-wrap {
+		margin-top:100px;
+		.img {
+			width:30px;
+			height:30px;
+			margin-right:30px;
+			vertical-align:middle;
+		}
+		.con-title {
+			font-size:28px;
+			color:#666;
+		}
+		.con {
+			margin-top:30px;
+			color:#999;
+			font-size:26px;
+			box-sizing:border-box;
+			padding-left:10px;
+		}
+	}
+	.con-wrap2 {
+		margin-top:60px;
+	}
+	.now-purchase {
+		width:310px;
+		height:80px;
+		margin:124px auto;
+		text-align:center;
+		line-height:80px;
+		color:#fff;
+		background:#e73b14;
+		font-size:28px;
+		border-radius:12px;
+	}
+}

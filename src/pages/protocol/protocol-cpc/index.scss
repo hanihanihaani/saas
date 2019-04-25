@@ -1,0 +1,9 @@
+@import '../../../styles/mixins.scss';
+.cpc-protocol {
+	font-size:28px;
+	padding-top:30px;
+	.agree {
+		margin:40px auto;
+		@include big-btn;
+	}
+}

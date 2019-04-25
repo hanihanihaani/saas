@@ -1,0 +1,10 @@
+@import '../../../styles/mixins.scss';
+
+.point-protocol {
+	font-size:28px;
+	padding-top:20px;
+	.agree {
+		margin:40px auto;
+		@include big-btn;
+	}
+}

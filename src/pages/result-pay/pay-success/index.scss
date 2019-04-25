@@ -1,0 +1,27 @@
+.top {
+	width:100%;
+	font-size:34px;
+	text-align:center;
+	margin-top:74px;
+	.img {
+		width:268px;
+		height:266px;
+		margin-bottom:80px;
+	}
+}
+.bottom {
+	display:flex;
+	justify-content:space-around;
+	margin-top:145px;
+	.btn {
+		display:inline-block;
+		width:310px;
+		height:80px;
+		text-align:center;
+		line-height:80px;
+		font-size:28px;
+		color:#fff;
+		background:#4db0de;
+		border-radius:12px;
+	}
+}

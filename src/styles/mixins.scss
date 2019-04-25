@@ -1,0 +1,26 @@
+@mixin big-btn {
+		width:680px;
+		height:84px;
+		font-size:28px;
+		color:#fff;
+		text-align:center;
+		line-height:84px;
+		background:#3ba9db;
+		border-radius:20px;
+}
+@mixin no-con {
+		margin: 240px auto;
+		width: 310px;
+		height: 84px;
+		text-align: center;
+		line-height: 84px;
+		color: #fff;
+		background: #4db0de;
+		font-size: 28px;
+		border-radius: 12px;
+}
+@mixin hidden {
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+}

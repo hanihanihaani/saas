@@ -1,0 +1,91 @@
+@import '../../styles/mixins.scss';
+page {
+	background:#f6f6f6;
+	padding:0;
+	.loaded {
+		text-align:center;
+		font-size: 28px;
+		color: #999;
+	}
+	.no-order {
+		margin-top:300px;
+		.no-order-text {
+			color: #999;
+			font-size: 28px;
+			text-align: center;
+		}
+		.go-order {
+			@include no-con;
+		}
+	}
+	.nav-wrap {
+		width:100%;
+		padding:0 30px;
+		height:80px;
+		line-height:80px;
+		background:#fff;
+		margin-top:20px;
+		font-size:30px;
+		color:#3fabdb;
+		.item {
+			width:120px;
+			border-bottom:2px solid #3fabdb;
+		}
+	}
+	.list {
+		box-sizing:border-box;
+		padding:0 30px;
+		margin-top:45px;
+		.wrap-item {
+			width:100%;
+			background:#fff;
+			box-sizing:border-box;
+			padding:27px 29px 30px 44px;
+			margin-bottom:38px;
+			.top-wrap {
+				display:flex;
+				justify-content:space-between;
+				.img {
+					width:32px;
+					height:29px;
+					margin-right:20px;
+				}
+				.text {
+					font-size:28px;
+					color:#333;
+					font-weight:bold;
+				}
+				.r {
+					font-size:26px;
+					color:#3daadb;
+				}
+			}
+			.m-wrap {
+				margin:50px 0 44px 0;
+				display:flex;
+				justify-content:space-between;
+				font-size:28px;
+				color:#333;
+			}
+			.b-wrap {
+				display:flex;
+				justify-content:space-between;
+				.go-pay {
+					padding:0 20px;
+					color:#fff;
+					background:#3daadb;
+					height:60px;
+					line-height:60px;
+					font-size:26px;
+					color:#fff;
+				}
+			}
+			.time {
+				color:#999;
+				height:60px;
+				line-height:60px;
+				font-size:24px;
+			}
+		}
+	}
+}

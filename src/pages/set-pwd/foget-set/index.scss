@@ -1,0 +1,26 @@
+@import '../../../styles/mixins.scss';
+
+.item-wrap {
+	display:flex;
+	margin-top:50px;
+	font-size:28px;
+	.l-name {
+		width:160px;
+		height:84px;
+		margin-left:30px;
+		line-height:84px;
+		text-align:left;
+		color:#333;
+	}
+	.input {
+		width:65%;
+		height:84px;
+		border:1px solid #cdcbcc;
+		box-sizing:border-box;
+		padding-left:20px;
+	}
+}
+.confirm {
+	@include big-btn;
+	margin:94px auto;
+}

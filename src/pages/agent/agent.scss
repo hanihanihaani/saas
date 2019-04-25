@@ -1,0 +1,91 @@
+@import '../../styles/mixins.scss';
+page {
+	padding:0;
+	background:#f6f6f6;
+	.no-agent {
+		color: #999;
+		font-size: 28px;
+		text-align: center;
+		margin-top:400px;
+	}
+	.ser-and-crea {
+		display:flex;
+		justify-content:space-around;
+		box-sizing:border-box;
+		padding:0 72px;
+		position:relative;
+		width:100%;
+		height:120px;
+		color:#999;
+		font-size:28px;
+		.all{
+			position:relative;
+			margin-top:20px;
+			width:240px;
+			height:80px;
+			box-sizing:border-box;
+			padding-left:80px;
+			line-height:80px;
+			background:#fff;
+			border-radius:20px;	
+			.img {
+				width:30px;
+				height:30px;
+				position:absolute;
+				top:23px;
+				left:27px;
+			}
+			.input {
+				margin-top:17px
+			}
+		}
+	}
+	.con-nav {
+		display:flex;
+		width:100%;
+		height:84px;
+		text-align:center;
+		line-height:84px;
+		font-size:28px;
+		background:#fff;
+		color:#333;
+		box-sizing: border-box;
+		padding: 0 30px 0 0;
+		.name {
+			width: 20%;
+		}
+		.phone {
+			width: 30%;
+		}
+		.item {
+			display:inline-block;
+			width:25%;
+		}
+	}
+	.con-wrap {
+		display:flex;
+		margin-top:20px;
+		width:100%;
+		height:80px;
+		background:#fff;
+		color:#333;
+		text-align:center;
+		line-height:80px;
+		font-size:28px;
+		box-sizing: border-box;
+		padding: 0 30px 0 0;
+		.c {
+			width: 20%;
+			@include hidden;
+		}
+		.u {
+			width: 30%;
+			@include hidden;
+		}
+		.i{
+			display:inline-block;
+			width:25%;
+			@include hidden;
+		}
+	}
+}

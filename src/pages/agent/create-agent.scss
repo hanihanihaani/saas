@@ -1,0 +1,49 @@
+@import '../../styles/mixins.scss';
+page {
+	background:#f6f6f6;
+}
+.create-wrap {
+	margin-top:60px;
+	.item {
+		display:flex;
+		margin-bottom:30px;
+		margin-left:20px;
+		font-size:28px;
+		.l-letter {
+			width:142px;
+			height:80px;
+			line-height:80px;
+			color:#333;
+		}
+		.input-wrap {
+			width:70%;
+			height:80px;
+			border:1px solid #cdcbcc;
+			background:#fff;
+			color:#999;
+			.input {
+				margin-top:20px;
+				box-sizing:border-box;
+				padding-left:20px;
+				color: #999;
+			}
+		}
+		.role {
+			color:#333;
+			margin-top:25px;
+			.b {
+				width: 24px;
+				height: 14px;
+				margin-left: 20px;
+				vertical-align: middle;
+			}
+		}
+		.picker-box {
+			margin-right:100px;
+		}
+	}
+	.confirm-create {
+		margin:70px auto;
+		@include big-btn;
+	}
+}

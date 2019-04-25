@@ -1,0 +1,7 @@
+@import '../../styles/common.scss';
+@import '../../styles/mixins.scss';
+.r-btn {
+	display:block;
+	margin:60px auto;
+	@include big-btn;
+}

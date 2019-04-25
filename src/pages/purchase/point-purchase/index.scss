@@ -1,0 +1,60 @@
+.cpc-purchase {
+	.purchase-title {
+		font-size:28px;
+		color:#666;
+		margin-top:66px;
+	}
+	.cpc-wrap {
+		margin-top:70px;
+		display:flex;
+		justify-content:space-between;
+		flex-wrap:wrap;
+		.item {
+			width:310px;
+			height:132px;
+			font-size:28px;
+			text-align:center;
+			background:#f0f0f0;
+			color:#666;
+			border-radius:20px;
+			.wrap {
+				margin-top:30px;
+			}
+			.blue {
+				color:#2b95fd;
+			}
+			&.active {
+				background:#3ba9db;
+				color:#fff;
+				.blue {
+					color:#fff;
+				}
+			}
+		}
+	}
+	.purchase-now {
+		width:70%;
+		height:80px;
+		margin:120px auto 60px;
+		text-align:center;
+		line-height:80px;
+		font-size:28px;
+		color:#fff;
+		box-shadow: 0 10px 10px -5px rgba(0,0,0,0.2);
+		background:#3ba9db;
+		border-radius:12px;
+	}
+	.protocol-wrap {
+		text-align:center;
+		font-size:26px;
+		color:#666;
+		.check-img {
+			width:24px;
+			height:24px;
+			vertical-align: middle;
+		}
+		.protocol {
+			color:#3ba9db;
+		}
+	}
+}

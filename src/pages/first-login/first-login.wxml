@@ -1,0 +1,14 @@
+<view class="login-container">
+    <view class="login">
+        <view class="app-info">
+            <image src='../../assets/logo.png' class="app-logo" />
+        </view>
+        <view class="alert">
+            <view class="alert-title">该小程序由马可波罗网开发，欢迎登录访问</view>
+            <view class="alert-desc">
+                <view class="alert-text">获得你的公开信息（昵称、头像等）</view>
+            </view>
+        </view>
+        <button class="weui-btn"  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">确认登录</button>
+    </view>
+</view>
