@@ -60,9 +60,9 @@ export default class Nav extends Component {
     }
 	}
 	render () {
-    if (this.state.roleType == 1) {
+    if (this.state.roleType == '1') {
       navList.splice(4,1)
-    } else if (this.state.roleType == 10) {
+    } else if (this.state.roleType == '10') {
       navList.splice(4,2)
       navList[0].name = '商机管理'
     }

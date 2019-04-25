@@ -190,7 +190,7 @@ export default class Nav extends Component {
 		return (
 			<View className='nav-wrap'>
 				<View className='nav'>
-				<View className={`item area ${roleType == 10 ? 'staff' : ''}`}>
+				<View className={`item area ${roleType == '10' ? 'staff' : ''}`}>
 						<Picker 
 							mode='multiSelector' 
 							value={areaIndex} 
@@ -202,14 +202,14 @@ export default class Nav extends Component {
 						</Picker>
 					</View>
 					<View 
-						className={`item time ${isShowTime ? 'active1' : null} ${roleType == 10 ? 'staff' : ''}`} 
+						className={`item time ${isShowTime ? 'active1' : null} ${roleType == '10' ? 'staff' : ''}`} 
 						onClick={this.onShowTimes.bind(this)}
 					>
 						时间
 						<Image src={timeImg} className='img' />
 					</View>
 					{
-						roleType !== 10
+						roleType !== '10'
 						? <View 
 								className={`item filter ${isShowFilter ? 'active' : null}`} 
 								onClick={this.onShowFilters.bind(this)}

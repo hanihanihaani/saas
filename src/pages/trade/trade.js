@@ -19,6 +19,7 @@ class Trade extends Component {
 		chooseClientId:[],
 		page:1,
 		isAlreadyMatch:'',
+		isAlreadyMatchs:'',
 		roleType:'',
 		loaded:false,
 		pageMatch:1
@@ -113,7 +114,11 @@ class Trade extends Component {
 		let toCorpName = getGlobalData('toCorpName')
 		let choose = Taro.getStorageSync('choose')
 		setTimeout(() => {
-			this.setState({loaded:true})
+			this.setState({
+				loaded:true,
+				page:1,
+				pageMatch:1
+			})
 		})
 		if (!choose) {
 			this.setState({
@@ -123,7 +128,7 @@ class Trade extends Component {
 		}
 		this.setState({toCorpName:toCorpName})
 		let roleType = Session.get().role_type
-		if (roleType == 10) {
+		if (roleType == '10') {
 			this.setState({
 				isAlreadyMatch:'a',
 				roleType:roleType
@@ -181,20 +186,19 @@ class Trade extends Component {
 	}
 	onScrollToLowerMore () {
 		Taro.showLoading({title:'加载中...'})
-		if (this.state.isAlreadyMatch == 'a') {
-			this.setState({
-				pageMatch:this.state.pageMatch + 1
-			},() => {
-				this.getMatchBusiness(
-					this.state.start,
-					this.state.end,
-					this.state.chooseCityId,
-					this.state.chooseProvinceId,
-					this.state.pageMatch
-					)
-			})
-			
-		} else {
+			if (this.state.isAlreadyMatchs == 'a') {
+				this.setState({
+					pageMatch:this.state.pageMatch + 1
+				},() => {
+					this.getMatchBusiness(
+						this.state.start,
+						this.state.end,
+						this.state.chooseCityId,
+						this.state.chooseProvinceId,
+						this.state.pageMatch
+						)
+				})
+			} else {
 			setTimeout(() => {
 				this.setState({
 					page:this.state.page + 1
@@ -232,7 +236,8 @@ class Trade extends Component {
 	//判断是否是筛选已分配
 	onAlreadyMatch (val) {
 		this.setState({
-			isAlreadyMatch:val
+			isAlreadyMatch:val,
+			isAlreadyMatchs:val
 		})
 	}
 	jumpChoosePer () {
@@ -301,7 +306,7 @@ class Trade extends Component {
 						</Swiper>
 					</View>
 					{
-						isAlreadyMatch !== 'a'
+						isAlreadyMatch !== 'a' 
 						? <View>
 								<View className='choose-wrap'>
 									<View className='choose-btn' onClick={this.allSelects}>
