@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { PERSON_INFO } from '@service/api'
+import api from '@service/ask'
 import { set as setGlobalData, get as getGlobalData } from '@utils/global_data.js'
 import phoneImg from './assets/phone.png'
 import companyImg from './assets/company.png'
@@ -30,12 +31,7 @@ class User extends Component {
 		Taro.navigateTo({url:'/pages/order/order'})
 	}
 	getPersonInfo () {
-		Taro.request({
-			url:PERSON_INFO,
-			method:'POST',
-			header:{'x-wx-skey':Session.get().skey},
-		})
-			.then(res => {
+		api.api(PERSON_INFO).then(res => {
 				if (res.data.state == 1) {
 					setGlobalData('info',res.data.data.info)
 					setGlobalData('avatarUrl',res.data.data.avatarUrl)

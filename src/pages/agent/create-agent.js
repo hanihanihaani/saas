@@ -191,7 +191,7 @@ class CreateAgent extends Component {
   	}
   }
 	render () {
-		const { role,roleCheck,provinceList,provinceCheck,cityCheck,cityList } = this.state
+		const { role,roleCheck,provinceList,provinceCheck,cityCheck,cityList,roleType } = this.state
 		return (
 			<View className='create-wrap'>
 				<View className='item'>
@@ -208,6 +208,7 @@ class CreateAgent extends Component {
 				</View>
 				<View className='item'>
 					<Text className='l-letter'>手机号</Text>
+					{roleType == 10 ? <Text className='warn'>（登录帐号）</Text> : ''}
 					<View className='input-wrap'>
 						<Input 
 							type='number' 
@@ -246,10 +247,6 @@ class CreateAgent extends Component {
 					</View>
 				</View>
 				<View className='item'>
-					<Text className='l-letter'>角色</Text>
-					<View className='role'>{roleCheck}</View>
-				</View>
-				<View className='item'>
 					<Text className='l-letter'>所在地</Text>
 					<View className='picker-box'>
 						<Picker mode='selector' range={provinceList} onChange={this.onAreaChange}>
@@ -261,6 +258,10 @@ class CreateAgent extends Component {
 							<View className='role'>{cityCheck}<Image src={arrowBimg} className='b' /></View>
 						</Picker>
 					</View>
+				</View>
+				<View className='item'>
+					<Text className='l-letter'>角色</Text>
+					<View className='role'>{roleCheck}</View>
 				</View>
 				<View className='confirm-create' onClick={this.confirm}>确认创建</View>
 			</View>

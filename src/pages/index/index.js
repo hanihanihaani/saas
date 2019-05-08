@@ -4,6 +4,7 @@ import Nav from './nav'
 import Banner from './banner'
 import banner from './assets/bann.png'
 import './index.scss'
+let Session = require('@utils/first-login/session')
 
 export default class Index extends Component {
   config = {

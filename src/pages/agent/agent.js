@@ -97,10 +97,10 @@ class Agent extends Component {
   	let placeholder
   	let roleLetter
   	if (roleType == 1) {
-  		placeholder='搜索代理商'
+  		placeholder='搜索姓名'
  			roleLetter='创建代理商'
   	} else if (roleType == 10) {
-  		placeholder='搜索销售'
+  		placeholder='搜索姓名'
   		roleLetter='创建销售'
   	}
 		return (

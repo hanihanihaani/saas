@@ -19,7 +19,7 @@ Page({
       wx.getSetting({
         success: function (res) {
           if (res.authSetting['scope.userInfo']) {
-
+            console.log('c')
             // 检查登录是否过期
             wx.checkSession({
               success: function () {

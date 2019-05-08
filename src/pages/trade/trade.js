@@ -98,7 +98,10 @@ class Trade extends Component {
 					.then((res) => {
 						if (res.confirm) {
 							this.businessMatch(toCorpId,this.state.chooseClientId)
-							this.setState({businessSj:[]})
+							this.setState({
+								businessSj:[],
+								chooseClientId:[]
+							})
 							this.getBusinessList()
 						}
 					})

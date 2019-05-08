@@ -6,9 +6,17 @@ page {
 	margin-top:60px;
 	.item {
 		display:flex;
+		position: relative;
 		margin-bottom:30px;
 		margin-left:20px;
 		font-size:28px;
+		.warn {
+			position: absolute;
+			top:63px;
+			left: -16px;
+			font-size: 20px;
+			color: #333;
+		}
 		.l-letter {
 			width:142px;
 			height:80px;
@@ -40,6 +48,9 @@ page {
 		}
 		.picker-box {
 			margin-right:100px;
+			background:#fff;
+			padding: 0 10px;
+			border: 1px solid #cdcbcc;
 		}
 	}
 	.confirm-create {

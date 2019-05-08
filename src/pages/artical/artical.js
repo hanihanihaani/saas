@@ -28,7 +28,6 @@ class Artical extends Component {
         sizeType: ['original', 'compressed'],
         sourceType: ['album', 'camera'],
         success: function(res) {
-					console.log('res',res)
 						let tempFilePaths = res.tempFilePaths;
 						let tempFileSize = res.tempFiles[0].size
 						if (tempFileSize <= 1000000) {

@@ -65,3 +65,6 @@
     color:#fff;
     margin-top:120px;
 }
+.weui-btn:after {
+    border: none;
+}

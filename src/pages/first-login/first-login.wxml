@@ -4,7 +4,7 @@
             <image src='../../assets/logo.png' class="app-logo" />
         </view>
         <view class="alert">
-            <view class="alert-title">该小程序由马可波罗网开发，欢迎登录访问</view>
+            <view class="alert-title">该小程序由企业帮帮开发，欢迎登录访问</view>
             <view class="alert-desc">
                 <view class="alert-text">获得你的公开信息（昵称、头像等）</view>
             </view>
