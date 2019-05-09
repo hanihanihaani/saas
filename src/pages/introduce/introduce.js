@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,Text,Input } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import Cpc from './cpc'
 import SjPoint from './sj-point'
 
@@ -21,7 +21,7 @@ class Introduce extends Component {
 			showPage = <Cpc />
 		} else if (type == 1) {
 			showPage = <SjPoint />
-		}
+		} 
 		return (
 			<View className='cpc'>
 				{showPage}

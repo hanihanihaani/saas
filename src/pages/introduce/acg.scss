@@ -1,0 +1,89 @@
+page {
+  padding: 0;
+}
+@mixin btnBuy {
+  position: absolute;
+  padding: 0 30px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 28px;
+  background: #f1414a;
+  color: #fff;
+  border-radius: 30px;
+  
+}
+.acg-wrap {
+  position: relative;
+  .acg-img {
+    width: 750px;
+    height: 2447px;
+  }
+  .title {
+    position: absolute;
+    top:137px;
+    right: 7px;
+    width: 380px;
+    line-height: 1.7;
+    text-align: center;
+    color: #f1414a;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .buy-now {
+    @include btnBuy;
+    top: 280px;
+    right: 140px;
+  }
+  .baidu-con {
+    position: absolute;
+    top:360px;
+    width: 100%;
+    padding: 80px 30px 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: center;
+    .baidu-logo {
+      position: absolute;
+      left: 50%;
+      top:4px;
+      margin-left: -113px;
+      width: 250px;
+      height: 70px;
+    }
+    .introduce {
+      margin-top: 24px;
+      font-size: 32px;
+      color: #666;
+    }
+    .introduce-con {
+      font-size: 26px;
+      color: #a5a4a3;
+      margin-top: 28px;
+      line-height: 1.6;
+    }
+  }
+  .btn-buy {
+    @include btnBuy;
+    bottom:320px;
+    left: 50%;
+    margin-left: -86px;
+  }
+  .address,.phone {
+    position: absolute;
+    left: 134px;
+    font-size: 28px;
+    color: #666;
+  }
+  .address {
+    bottom: 168px;
+  }
+  .phone {
+    bottom: 95px;
+    .r {
+      margin-left: 60px;
+    }    
+  }
+}

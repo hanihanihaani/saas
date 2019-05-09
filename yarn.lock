@@ -284,12 +284,12 @@
   dependencies:
     uglify-js "^3.3.24"
 
-"@tarojs/redux@^1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/redux/-/redux-1.2.20.tgz#42737c9b14d9700ce5af971049139f7d978de518"
-  integrity sha512-gU8o5gFyNaglDAfAbbInguhn/tnnKRviC/30JZXqtZCnwdA9gvIkmbHrfhjV07ARV2DATFjCCVQ83T7ZH8H5eA==
+"@tarojs/redux@^1.2.21":
+  version "1.2.26"
+  resolved "https://registry.yarnpkg.com/@tarojs/redux/-/redux-1.2.26.tgz#4635de8609394fe30e0f50be4688b012c036758d"
+  integrity sha512-rlai0J129qHfKptSBpT2fl45GOcbhUMjA6bpKyVG18d1bs+Rr7R32vuBJgxwotnEm6liDVQ5IlKxzQiekY5Vzg==
   dependencies:
-    "@tarojs/utils" "1.2.20"
+    "@tarojs/utils" "1.2.26"
 
 "@tarojs/rn-runner@^1.2.20":
   version "1.2.20"
@@ -385,10 +385,10 @@
   resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.17.tgz#be32efd035c68cf8aea3878e67bf899564bc2f6a"
   integrity sha512-vB3BxGhGAYcmmdsz5IMMgdaZVV43Am6OZOS1mHC5rG0bPDVjsX0M+dOuwWXD1JonqyLzR61wKvz8rgAoAMoWhA==
 
-"@tarojs/utils@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.20.tgz#7af8274b724f719ee52538b16411faf2c52d22e5"
-  integrity sha512-tFOHUbgxRd/WYtDLGtRg73fmQU7KshHSGBsnZeH1Jtkmt8jJlkr30NrZEaSPB+nabiBVpWK2tpNVA2FI3vE2lw==
+"@tarojs/utils@1.2.26":
+  version "1.2.26"
+  resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.26.tgz#de60d2e3cbc941259ca0672009c993628188975b"
+  integrity sha512-kOm4NAME2P3CRvX0HHg2iwUFY/iv7QGo/dhZkjuHueNQvtNMiqpzs1Q9PpB4C6saL1XZ8GBfyl//BeIAh73ssw==
 
 "@tarojs/webpack-runner@1.2.17":
   version "1.2.17"

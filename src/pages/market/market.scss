@@ -9,10 +9,12 @@ page {
 	}
 .btn-wrap {
 	display:flex;
-	justify-content:space-around;
+	justify-content:space-between;
+	flex-wrap: wrap;
 	.btn {
 		width:300px;
 		height:80px;
+		margin-bottom: 30px;
 		text-align:center;
 		line-height:80px;
 		color:#fff;

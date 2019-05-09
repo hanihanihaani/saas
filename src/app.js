@@ -20,6 +20,7 @@ class App extends Component {
       'pages/protocol/protocol',
       'pages/purchase/purchase',
       'pages/introduce/introduce',
+      'pages/introduce/acg',
       'pages/agent/agent-detail',
       'pages/agent/agent',
       'pages/agent/create-agent',
