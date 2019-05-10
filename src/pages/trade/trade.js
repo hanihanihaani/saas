@@ -127,7 +127,7 @@ class Trade extends Component {
 			this.setState({
 				businessSj:[]
 			})
-			this.getBusinessList();
+			this.getBusinessList(this.state.page);
 		}
 		this.setState({toCorpName:toCorpName})
 		let roleType = Session.get().role_type

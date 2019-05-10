@@ -1,9 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text } from '@tarojs/components'
 import './index.scss'
+import filterImg from '@assets/filter-img.png'
 
 export default class Filter extends Component {
-
 	state = {
 		isChoose:'',
 		chooseWho:'a',
@@ -50,7 +50,7 @@ export default class Filter extends Component {
 						filterCon.map((filter,i) => {
 							return <View className='item-wrap' key={i}>
 												{
-													isChoose == i ? <Text className='r-l'>√</Text> : ''
+													isChoose == i ? <Image src={filterImg} className='r-l' /> : ''
 												}
 												<Text 
 													className='right-item' 

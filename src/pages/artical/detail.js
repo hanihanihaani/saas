@@ -6,7 +6,8 @@ import './detail.scss'
 
 class Detail extends Component {
   config = {
-		navigationBarTitleText:'文章详情'
+    navigationBarTitleText:'文章详情',
+    navigationStyle:'custom'
   }
   componentWillMount () {
     let id = this.$router.params.id

@@ -12,6 +12,7 @@ export const CPC_BUY = `${host}/saas/servuce_mall/cpc.php`
 export const POINT_BUY = `${host}/saas/servuce_mall/purchase_score.php`
 export const RE_BUY = `${host}/saas/servuce_mall/repay.php`
 export const ORDER_LIST = `${host}/saas/servuce_mall/order_list.php`
+export const BAIDU_BUY = `${host}/saas/servuce_mall/baidu_b2b.com`
 //商机
 export const BUSINESS_LIST = `${host}/saas/clue_list.php`
 export const BUSINESS_ALREADY = `${host}/saas/matched_clue_list.php`

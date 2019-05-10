@@ -5,6 +5,9 @@ import baiduImg from './assets/badiCaig.png'
 import './acg.scss'
 
 export default class Acg extends Component {
+  config = {
+    navigationBarTitleText: '爱采购',
+  }
   render () {
     return (
       <View className='acg-wrap'>
@@ -14,9 +17,10 @@ export default class Acg extends Component {
         <View className='baidu-con'>
           <Image src={baiduImg} className='baidu-logo' />
           <Text className='introduce'>“百度爱采购”介绍</Text>
-          <Text className='introduce-con'>
-            “百度爱采购”是在百度阿拉丁的基础上进行升级、整合而成的百度搜索系列全新产品，它以满足用户体验为前提，将客户优质的产品和服务结构化信息前置，以图文特型样式在自然搜索结果页首页进行展示，让搜索更简单，让效果更直观。
-          </Text>
+          <Text className='introduce-con'>“百度爱采购”是在百度阿拉丁的基础上进行升级、整合</Text> 
+          <Text className='introduce-con'>而成的百度搜索系列全新产品，它以满足用户体验为前提，</Text>
+          <Text className='introduce-con'>将客户优质的产品和服务结构化信息前置，以图文特型样式在</Text>
+          <Text className='introduce-con'>自然搜索结果页首页进行展示，让搜索更简单，让效果更直观。</Text>
         </View>
         <Text className='btn-buy'>立即购买</Text>
         <Text className='address'>地址：北京市海淀区学清路科技财富中心A座10层</Text>

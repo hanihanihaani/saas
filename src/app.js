@@ -44,7 +44,8 @@ class App extends Component {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#3ba9db',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'white'
+      navigationBarTextStyle: 'white',
+      navigationStyle:'default'
     },
     tabBar: {
       selectedColor:'#3ba9db',

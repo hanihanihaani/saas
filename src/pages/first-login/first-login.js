@@ -19,7 +19,6 @@ Page({
       wx.getSetting({
         success: function (res) {
           if (res.authSetting['scope.userInfo']) {
-            console.log('c')
             // 检查登录是否过期
             wx.checkSession({
               success: function () {
@@ -93,4 +92,14 @@ Page({
         },
       });
     },
+    onShow() {
+      if (Session.get()) {
+        if (Session.get().corpid > 0) {
+          wx.showLoading({title:'正在登录'})
+          setTimeout(() => {
+            wx.switchTab({url:'/pages/index/index'})
+          },500)
+        }
+      }
+    }
 })

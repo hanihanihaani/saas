@@ -166,7 +166,7 @@ export default class Nav extends Component {
 		this.getAreaBusiness(chooseProvinceId,chooseCityId)
 	}
 	componentWillReceiveProps(nextProps) {
-		if (Object.keys(nextProps.sjMes.province).length !== 0) {
+		if (Object.keys(nextProps.sjMes).length !== 0) {
 			const provinceList = Object.values(nextProps.sjMes.province)
 			const provinceListId = Object.keys(nextProps.sjMes.province)
 			let cityArray = Object.values(nextProps.sjMes.city)

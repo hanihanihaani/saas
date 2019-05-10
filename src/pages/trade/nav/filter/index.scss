@@ -39,16 +39,18 @@
 			width:70%;
 			height:100%;
 			.item-wrap {
+				position: relative;
 				width:100%;
 				display:flex;
 				justify-content:flex-end;
 				.r-l {
-					width:10%;
-					height:80px;
-					line-height:80px;
-					color:#2b95fd;
+					position: absolute;
+					top:34px;
+					left:24px;
+					width:24px;
+					height:17px;
 					text-align:right;
-					font-size:28px;
+					vertical-align: middle;
 				}
 				.right-item {
 					display:inline-block;
