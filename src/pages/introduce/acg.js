@@ -8,12 +8,15 @@ export default class Acg extends Component {
   config = {
     navigationBarTitleText: '爱采购',
   }
+  goPurchase() {
+    Taro.navigateTo({url:'/pages/purchase/purchase?type=2'})
+  }
   render () {
     return (
       <View className='acg-wrap'>
         <Image src={acgImg} className='acg-img' />
         <Text className='title'>马可波罗网基于百度爱采购结合马可波罗网自身平台优势，推出全新“采购通”产品!</Text>
-        <Text className='buy-now'>立即购买</Text>
+        <Text className='buy-now' onClick={this.goPurchase}>立即购买</Text>
         <View className='baidu-con'>
           <Image src={baiduImg} className='baidu-logo' />
           <Text className='introduce'>“百度爱采购”介绍</Text>

@@ -3,6 +3,7 @@ import { View,Text,Input,Textarea } from '@tarojs/components'
 import { UP_IMG,ISSUE_ARTICAL,ARTICAL_DETAIL,EDIT_ARTICAL } from '@service/api'
 import api from '@service/ask'
 import uploadImg from '@assets/upload.png'
+import './artical.scss'
 let Session = require('@utils/first-login/session')
 
 class Artical extends Component {

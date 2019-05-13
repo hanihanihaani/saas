@@ -3,6 +3,7 @@ import { View,Text,Image } from '@tarojs/components'
 import topImg from '@pages/index/banner/assets/bann.png'
 import iconImg1 from '../assets/icon1.png'
 import iconImg2 from '../assets/icon2.png'
+import './index.scss'
 
 export default class SjPoint extends Component {
 	jumpPoint () {

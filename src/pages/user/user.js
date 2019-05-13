@@ -9,6 +9,7 @@ import arrowImg from '@assets/arrow.png'
 import setImg from './assets/setting.png'
 import orderImg from './assets/order.png'
 import aboutImg from './assets/about.png'
+import './user.scss'
 let Session = require('@utils/first-login/session')
 
 class User extends Component {
