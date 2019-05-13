@@ -43,7 +43,8 @@ class Trade extends Component {
 					Taro.showToast({title:'没有更多了',icon:'none'})
 				}
 			} else {
-				Taro.showToast({title:res.data.msg,icon:'none'})
+				// Taro.showToast({title:res.data.msg,icon:'none'})
+				Taro.showToast({title:'没有更多数据',icon:'none'})
 			}
 		})
 	}

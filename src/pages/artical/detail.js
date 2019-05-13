@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Image } from '@tarojs/components'
 import { ARTICAL_DETAIL } from '@service/api'
+import { Navigation } from '@components/nav'
 import api from '@service/ask'
 import './detail.scss'
 
@@ -11,7 +12,6 @@ class Detail extends Component {
   }
   componentWillMount () {
     let id = this.$router.params.id
-    console.log('id',id)
     let data = {id:id}
     api.api(ARTICAL_DETAIL,data).then(res => {
       if (res.data.state == 0) {
@@ -28,13 +28,16 @@ class Detail extends Component {
     const { artical } = this.state
     return (
       <View className='detail'>
-        <View className='title'>{artical.title}</View>
-        <View className='author'>
-          <Text>{artical.author}</Text>
-          <Text className='time'>{artical.createtime}</Text>
+        <Navigation />
+        <View className='detail-box'>
+          <View className='title'>{artical.title}</View>
+          <View className='author'>
+            <Text>{artical.author}</Text>
+            <Text className='time'>{artical.createtime}</Text>
+          </View>
+          <View><Image className='img' src={artical.cover} /></View>
+          <View className='content'>{artical.content}</View>
         </View>
-        <View><Image className='img' src={artical.cover} /></View>
-        <View className='content'>{artical.content}</View>
       </View>
     )
   }
