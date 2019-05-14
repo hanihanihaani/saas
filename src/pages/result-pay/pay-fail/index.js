@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text } from '@tarojs/components'
-import { CPC_BUY,POINT_BUY,RE_BUY } from '@service/api'
+import { CPC_BUY,POINT_BUY,RE_BUY,BAIDU_BUY } from '@service/api'
 import api from '@service/ask'
 import waitImg from './assets/wait.png'
 import './index.scss'
@@ -37,6 +37,31 @@ export default class PayFail extends Component {
  						},
  						fail(res) {
  							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=0&money=${money}`})
+ 						}
+ 					})
+ 				} else {
+ 					Taro.showToast({title:res.data.msg,icon:'none'})
+ 				}
+ 			})
+	}
+	payCgt (money) {
+		let data = {
+			money:parseInt(money),
+			approach:7
+		}
+		api.api(BAIDU_BUY,data).then(res => {
+ 				if (res.data.state == 0) {
+ 					Taro.requestPayment({
+ 						timeStamp:res.data.data.timeStamp,
+ 						nonceStr:res.data.data.nonceStr,
+ 						package:res.data.data.package,
+ 						signType:res.data.data.signType,
+ 						paySign:res.data.data.paySign,
+ 						success(res) {
+ 							Taro.navigateTo({url:'/pages/result-pay/result-pay?type=0'})
+ 						},
+ 						fail(res) {
+ 							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=3&money=${money}`})
  						}
  					})
  				} else {
@@ -95,7 +120,7 @@ export default class PayFail extends Component {
 			}) 
 	}
 	componentDidMount () {
-		//判断是来自cpc或商机点。0:cpc,1:商机点.2:订单列表
+		//判断是来自cpc或商机点或采购通。0:cpc,1:商机点.2:订单列表，3:采购通
 		this.setState({
 			typeService:this.props.typeService,
 		})
@@ -107,6 +132,8 @@ export default class PayFail extends Component {
 			this.payPoint(this.props.num,this.props.price)
 		} else if (this.state.typeService == 2) {
 			this.goPay(this.props.orderId)
+		} else if (this.state.typeService == 3) {
+			this.payCgt(this.props.money)
 		}
 	}
 	render () {

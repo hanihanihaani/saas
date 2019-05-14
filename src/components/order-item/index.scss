@@ -1,0 +1,55 @@
+.order-item {
+  box-sizing:border-box;
+  padding:0 30px;
+  .wrap-item {
+    width:100%;
+    background:#fff;
+    box-sizing:border-box;
+    padding:27px 29px 30px 44px;
+    margin-bottom: 24px;
+    .top-wrap {
+      display:flex;
+      justify-content:space-between;
+      .img {
+        width:32px;
+        height:29px;
+        margin-right:20px;
+      }
+      .text {
+        font-size:28px;
+        color:#333;
+        font-weight:bold;
+      }
+      .r {
+        font-size:26px;
+        color:#3daadb;
+      }
+    }
+    .m-wrap {
+      margin:50px 0 44px 0;
+      display:flex;
+      justify-content:space-between;
+      font-size:28px;
+      color:#333;
+    }
+    .b-wrap {
+      display:flex;
+      justify-content:space-between;
+      .go-pay {
+        padding:0 20px;
+        color:#fff;
+        background:#3daadb;
+        height:60px;
+        line-height:60px;
+        font-size:26px;
+        color:#fff;
+      }
+    }
+    .time {
+      color:#999;
+      height:60px;
+      line-height:60px;
+      font-size:24px;
+    }
+  }
+}

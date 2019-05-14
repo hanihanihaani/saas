@@ -25,7 +25,7 @@ export default class Acg extends Component {
           <Text className='introduce-con'>将客户优质的产品和服务结构化信息前置，以图文特型样式在</Text>
           <Text className='introduce-con'>自然搜索结果页首页进行展示，让搜索更简单，让效果更直观。</Text>
         </View>
-        <Text className='btn-buy'>立即购买</Text>
+        <Text className='btn-buy' onClick={this.goPurchase}>立即购买</Text>
         <Text className='address'>地址：北京市海淀区学清路科技财富中心A座10层</Text>
         <View className='phone'><Text>电话：010-8285 5117</Text><Text className='r'>400-650-1997</Text></View>
       </View>

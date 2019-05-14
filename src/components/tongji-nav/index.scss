@@ -1,0 +1,34 @@
+.tongji-nav {
+  margin-top: 42px;
+}
+.time-nav {
+  display: flex;
+  justify-content: space-between; 
+  padding-bottom: 24px;
+  border-bottom: 2px solid #efefef;
+  font-size: 34px;
+  color: #666;
+  .active {
+    color: #3ba9db;
+  }
+} 
+.con-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28px;
+  color: #333;
+  margin-top:45px;
+  .f {
+    width: 27%
+  }
+  .s {
+    width: 22%
+  }
+  .t {
+    width: 30%
+  }
+  .fo {
+    width: 20%;
+    text-align: center;
+  }
+}

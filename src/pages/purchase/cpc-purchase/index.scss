@@ -1,4 +1,8 @@
 .cpc-purchase {
+	.cpc-purchase-list {
+		box-sizing: border-box;
+		padding: 0 30px;
+	}
 	.purchase-title {
 		font-size:28px;
 		color:#666;
@@ -50,4 +54,12 @@
 			color:#3ba9db;
 		}
 	}
+}
+.cpc-box {
+	padding: 0 30px;
+}
+.scroll-box {
+	width: 100%;
+	background: #f6f6f6;
+	padding-top: 34px;
 }

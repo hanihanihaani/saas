@@ -9,7 +9,7 @@ class ResultPay extends Component {
 		navigationBarTitleText:'操作详情'
 	}
 	componentWillMount () {
-		//获取支付结果。type:0：成功，1：失败.typeService:来自cpc或商机点.0:cpc,1:商机点,2:订单列表
+		//获取支付结果。type:0：成功，1：失败.typeService:来自cpc或商机点或者采购通.0:cpc,1:商机点,2:订单列表,3:采购通
 		let type = this.$router.params.type
 		let typeService = this.$router.params.typeService
 		let id = this.$router.params.orderId
@@ -24,6 +24,8 @@ class ResultPay extends Component {
 			})
 		} else if (typeService == 2) {
 			this.setState({id:id})
+		} else if (typeService == 3) {
+			this.setState({money:this.$router.params.money})
 		}
 		this.setState({
 			type:type,
@@ -31,22 +33,22 @@ class ResultPay extends Component {
 		})
 	}
 	render () {
-		const { type, typeService,id } = this.state
+		const { type, typeService, id, money, num, price } = this.state
 		let showPage
 		if (type == 0) {
 			showPage = <PaySuccess />
 		} else if (type == 1) {
-			showPage = <PayFail />
+			showPage = <PayFail 
+										typeService={typeService} 
+										money={money} 
+										num={num}  
+										price={price}
+										orderId={id}
+									/>
 		}
 		return (
 			<View>
-				<PayFail 
-					typeService={typeService} 
-					money={this.state.money} 
-					num={this.state.num}  
-					price={this.state.price}
-					orderId={id}
-				/>
+				{showPage}
 			</View>
 		)
 	}

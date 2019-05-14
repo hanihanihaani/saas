@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Image } from '@tarojs/components'
 import { ORDER_LIST,RE_BUY } from '@service/api'
 import api from '@service/ask'
+import { OrderItem } from '@components/order-item'
 import orderLogo from '@assets/order-logo.png'
 import './order.scss'
 
@@ -12,11 +13,13 @@ class Order extends Component {
 	state = {
 		page:1,
 		orderList:[],
-		loaded:true
+		loaded:true,
+		aid:''
 	}
 	getOrderList () {
 		let data = {
-				page:this.state.page
+				page:this.state.page,
+				aid:''
 		}
 		api.api(ORDER_LIST,data).then(res => {
 				let list = this.state.orderList
@@ -24,10 +27,16 @@ class Order extends Component {
 					if (res.data.data.result) {
 						if (res.data.data.result.length !== 0) {
 							if (this.state.page == 1) {
-								this.setState({orderList:res.data.data.result})
+								this.setState({
+									orderList:res.data.data.result,
+									aid:res.data.data.result[0].aid
+								})
 							} else {
 								Taro.hideLoading()
-								this.setState({orderList:list.concat(res.data.data.result)})
+								this.setState({
+									orderList:list.concat(res.data.data.result),
+									aid:res.data.data.result[0].aid
+								})
 							}
 						}
 					}else {
@@ -83,26 +92,7 @@ class Order extends Component {
 		Taro.navigateTo({url:'/pages/market/market'})
 	}
 	render () {
-		const { orderList, loaded } = this.state
-		const list = orderList.map((order,i) => {
-						return <View className='wrap-item' key={i}>
-										<View className='top-wrap'>
-											<View className='l'>
-												<Image src={orderLogo} className='img' />
-												<Text className='text'>推广服务</Text>
-											</View>
-											<View className='r'>{order.pay_str}</View>
-										</View>
-										<View className='m-wrap'>
-											<Text className='type'>{order.title}</Text>
-											<Text className='price'>￥{order.req_consume}</Text>
-										</View>
-										<View className='b-wrap'>
-											<View className='time'>下单时间：{order.create_time}</View>
-											{order.pay_str == '未支付' ? <View id={i} className='go-pay' onClick={this.goPay}>去支付</View> : ''}
-										</View>
-									</View>
-					})
+		const { orderList, loaded, aid } = this.state
 		return (
 			<View className='order'>
 				<View className='nav-wrap'>
@@ -113,7 +103,10 @@ class Order extends Component {
 					loaded 
 					? <View className='loaded'>加载中...</View>
 					: orderList.length !== 0
-						? list
+						? <OrderItem
+								list={orderList}
+								aid={aid}
+							/>
 						: <View className='no-order'>
 								<View className='no-order-text'>您还没有订单</View>
 								<View className='go-order' onClick={this.jumpMarket}>去下单</View>
