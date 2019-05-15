@@ -38,15 +38,7 @@ export default class OrderItem extends Component {
 			}) 
 	}
   render () {
-    const { list,aid } = this.props
-    let showText
-    if (aid == '10078') {
-      showText = <Text className='text'>采购通</Text>
-    } else if (aid == '1022') {
-      showText = <Text className='text'>商机点</Text>
-    } else if (aid == '10062') {
-      showText = <Text className='text'>CPC</Text>
-    }
+    const { list } = this.props
     return (
       <View className='order-item'>
       {
@@ -55,7 +47,15 @@ export default class OrderItem extends Component {
                   <View className='top-wrap'>
                     <View className='l'>
                       <Image src={orderLogo} className='img' />
-                      {showText}
+                      {
+                        order.aid == '10078' ? <Text className='text'>采购通</Text> : ''
+                      }
+                      {
+                        order.aid == '10062' ? <Text className='text'>CPC</Text> : ''
+                      }
+                      {
+                        order.aid == '1022' ? <Text className='text'>商机点</Text> : ''
+                      }
                     </View>
                     <View className='r'>{order.pay_str} </View>
                   </View>

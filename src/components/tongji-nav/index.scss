@@ -1,3 +1,4 @@
+@import '../../styles/mixins.scss';
 .tongji-nav {
   margin-top: 42px;
 }
@@ -12,12 +13,26 @@
     color: #3ba9db;
   }
 } 
-.con-title {
+.con-titles {
+  border-bottom: 2px solid #efefef;
+  padding-bottom: 20px;
+}
+.con-title,.con-titles {
   display: flex;
   justify-content: space-between;
   font-size: 28px;
   color: #333;
   margin-top:45px;
+  .xian {
+    width: 20%;
+  }
+  .reason {
+    width: 27%;
+  }
+  .time {
+    width: 22%;
+    text-align: center;
+  }
   .f {
     width: 27%
   }
@@ -30,5 +45,60 @@
   .fo {
     width: 20%;
     text-align: center;
+  }
+}
+.mask {
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:rgba(0,0,0,0.4);
+  z-index: 999;
+}
+.date-select {
+  position: absolute;
+  top:20%;
+  left: 50%;
+  margin-left: -300px;
+  width: 600px;
+  height: 350px;
+  background:#fff;
+  border: 20px;
+  z-index: 1000;
+  .select-con {
+    display:flex;
+    justify-content:center;
+    .zhi {
+      font-size:26px;
+      height:152px;
+      line-height:10;
+    }
+    .start,.end {
+      width:45%;
+      margin-top:48px;
+      text-align:center;
+      .start-name,.end-name {
+        display:block;
+        font-size:26px;
+        margin-bottom:40px;
+      }
+      .start-time,.end-time {
+        font-size:44px;
+        font-weight:bold;
+      }
+    }
+  }
+  .confirm {
+    display: block;
+    margin: 40px auto;
+    width:500px;
+		height:84px;
+		font-size:28px;
+		color:#fff;
+		text-align:center;
+		line-height:84px;
+		background:#3ba9db;
+		border-radius:20px;
   }
 }

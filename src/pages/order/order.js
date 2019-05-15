@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Image } from '@tarojs/components'
 import { ORDER_LIST,RE_BUY } from '@service/api'
 import api from '@service/ask'
+import { Loading } from '@components/loading'
 import { OrderItem } from '@components/order-item'
 import orderLogo from '@assets/order-logo.png'
 import './order.scss'
@@ -101,11 +102,10 @@ class Order extends Component {
 				<View className='list'>
 				{
 					loaded 
-					? <View className='loaded'>加载中...</View>
+					? <Loading />
 					: orderList.length !== 0
 						? <OrderItem
 								list={orderList}
-								aid={aid}
 							/>
 						: <View className='no-order'>
 								<View className='no-order-text'>您还没有订单</View>

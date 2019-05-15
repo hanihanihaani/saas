@@ -14,6 +14,9 @@ export const RE_BUY = `${host}/saas/servuce_mall/repay.php`
 export const ORDER_LIST = `${host}/saas/servuce_mall/order_list.php`
 export const BAIDU_BUY = `${host}/saas/servuce_mall/baidu_b2b.php`
 export const BAIDU_CONSUME = `${host}/saas/servuce_mall/b2b_consume_stat.php`
+export const BAIDU_CONSUME_DETAIL = `${host}/saas/servuce_mall/b2b_hit_detail.php`
+export const CPC_CONSUME = `${host}/saas/servuce_mall/cpc_consume_stat.php`
+export const POINT_CONSUME = `${host}/saas/servuce_mall/bussines_point.php`
 //商机
 export const BUSINESS_LIST = `${host}/saas/clue_list.php`
 export const BUSINESS_ALREADY = `${host}/saas/matched_clue_list.php`

@@ -22,17 +22,18 @@ Page({
             // 检查登录是否过期
             wx.checkSession({
               success: function () {
-                let corpid = Session.get().corpid
-                if (corpid > 0) {
-                  wx.showToast({title:'登录成功',icon:'success'})
-                  wx.switchTab({url:'/pages/index/index'})
-                } else {
-                  wx.showToast({title:'请绑定马可账户',icon:'none'})
-                  setTimeout(function() {
-                    wx.navigateTo({url:'/pages/login/login'})
-                  },1000)
+                if (Session.get()) {
+                  let corpid = Session.get().corpid
+                  if (corpid > 0) {
+                    wx.showToast({title:'登录成功',icon:'success'})
+                    wx.switchTab({url:'/pages/index/index'})
+                  } else {
+                    wx.showToast({title:'请绑定马可账户',icon:'none'})
+                    setTimeout(function() {
+                      wx.navigateTo({url:'/pages/login/login'})
+                    },1000)
+                  }
                 }
-                
                 // 登录态未过期
                 that.setData({
                   userInfo: userInfo,
@@ -68,15 +69,18 @@ Page({
           }
           qcloud.requestLogin({
             loginParams, success() {
-                let corpid = Session.get().corpid
-                if (corpid > 0) {
-                  wx.switchTab({url:'/pages/index/index'})
-                } else {
-                  wx.showToast({title:'请绑定马可账户',icon:'none'})
-                  setTimeout(function() {
-                    wx.navigateTo({url:'/pages/login/login'})
-                  },1000)
-                }
+                if (Session.get()) {
+                  let corpid = Session.get().corpid
+                  if (corpid > 0) {
+                    wx.switchTab({url:'/pages/index/index'})
+                  } else {
+                    wx.showToast({title:'请绑定马可账户',icon:'none'})
+                    setTimeout(function() {
+                      wx.navigateTo({url:'/pages/login/login'})
+                    },1000)
+                  }
+                } 
+                
               that.setData({
                 userInfo: options.userInfo,
                 logged: true

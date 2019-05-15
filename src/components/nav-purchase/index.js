@@ -24,6 +24,11 @@ export default class NavPurchase extends Component {
       toggleFlag:key
     })
   }
+  componentWillReceiveProps (nexprops) {
+    if (nexprops.showWho == 0) {
+      this.setState({toggleFlag:0})
+    }
+  }
   render () {
     const { list } = this.props
     const { toggleFlag } = this.state 

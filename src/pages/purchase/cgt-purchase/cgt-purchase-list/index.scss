@@ -1,10 +1,16 @@
+@mixin letter-color {
+	font-size: 28px;
+	color: #333;
+	margin-top: 40px;
+}
 .cgt-purchase-list {
 	padding: 0 30px;
 	box-sizing: border-box;
+	.yu {
+		@include letter-color;	
+	}
 	.purchase-title {
-		font-size:28px;
-		color:#666;
-		margin-top:66px;
+		@include letter-color;
 	}
 	.cpc-wrap {
 		margin-top:70px;

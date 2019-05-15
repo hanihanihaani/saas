@@ -60,6 +60,7 @@ export default class CgtPurchaseList extends Component {
 		const { isSelect,showWran } = this.state
     return (
       <View className='cgt-purchase-list'>
+        <View className='yu'>现金余额：2000元</View>
         <View className='purchase-title'>购买金额</View>
 				<View className='cpc-wrap'>
 					<View 

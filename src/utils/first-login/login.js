@@ -184,22 +184,13 @@ let requestLogin = function requestLogin(options) {
     method: options.method,
     data: options.data,
     success: function (result) {
-      // console.log('result',result)
-      // 成功地响应会话信息
-      if (result && result.statusCode === 200 && result.data.skey) {
-        if (result.data) {
+      console.log('result',result)
+      // 成功地响应会话信息'
+      if (result.data.state == 1) {
           Session.set(result.data);
           options.success();
-        } else {
-          var errorMessage = '登录失败(' + result.errMsg + ')：' + (result.message || '未知错误');
-          var noSessionError = new LoginError(constants.ERR_LOGIN_SESSION_NOT_RECEIVED, errorMessage);
-          options.fail(noSessionError);
-        }
-
-        // 没有正确响应会话信息
-      } else {
-        let noSessionError = new LoginError(constants.ERR_LOGIN_SESSION_NOT_RECEIVED, JSON.stringify(result.data));
-        options.fail(noSessionError);
+      } else if (result.data.state == -1) {
+        console.log('s')
       }
     },
 

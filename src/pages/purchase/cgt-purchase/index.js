@@ -30,8 +30,9 @@ export default class Cgt extends Component {
   onShowWho(val) {
     this.setState({showWho:val})
   }
-  onChooseDay(val) {
+  onChooseDay(val,startSel,endSel) {
     this.setState({showDay:val})
+    this.onGetCgtTongji(val,startSel,endSel)
   }
   getOrderList () {
     let data = {
@@ -52,10 +53,13 @@ export default class Cgt extends Component {
       }
     })
   }
-  getCgtTongji () {
+  onGetCgtTongji (statType,startSel,endSel) {
+    this.setState({cgtList:[]})
     let data = {
-      stat_type:this.state.showDay,
-      page:this.state.pageT
+      stat_type:statType,
+      page:this.state.pageT,
+      start_day:startSel,
+      end_day:endSel
     }
     api.api(BAIDU_CONSUME,data).then(res => {
       let list = this.state.cgtList
@@ -70,7 +74,7 @@ export default class Cgt extends Component {
   }
   componentDidShow () {
     this.getOrderList()
-    this.getCgtTongji()
+    this.onGetCgtTongji(this.state.showDay)
   }
   onScrollToLower () {
     Taro.showLoading({title:'正在加载'})
@@ -79,6 +83,11 @@ export default class Cgt extends Component {
     },() => {
       this.getOrderList()
     })
+  }
+  jumpDetail (e) {
+    let id = e.currentTarget.id
+    let sdate = this.state.cgtList[id].sdate
+    Taro.navigateTo({url:`/pages/purchase/cgt-detail?sdate=${sdate}`})
   }
   render () {
     const { navList, showWho, orderList,cgtList } = this.state
@@ -105,7 +114,7 @@ export default class Cgt extends Component {
               >
               {
                 cgtList.map((cgt,i) => {
-                  return <View className='con' key={i}>
+                  return <View className='con' key={i} id={i} onClick={this.jumpDetail}>
                           <Text className='con-item f'>{cgt.hit_num}</Text>
                           <Text className='con-item s'>{cgt.consume}</Text>
                           <Text className='con-item t'>{cgt.per_hit_price}</Text>
@@ -127,7 +136,6 @@ export default class Cgt extends Component {
             >
               <OrderItem
                 list={orderList}
-                aid='10078'
               />
             </ScrollView>
           : ''

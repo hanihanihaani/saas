@@ -1,12 +1,21 @@
+@mixin letter-color {
+	font-size:28px;
+	color:#666;
+	margin-top:40px;
+}
 .cpc-purchase {
 	.cpc-purchase-list {
 		box-sizing: border-box;
 		padding: 0 30px;
+		.yu-wrap {
+			@include letter-color;
+			.item {
+				margin-right: 40px;
+			}
+		}
 	}
 	.purchase-title {
-		font-size:28px;
-		color:#666;
-		margin-top:66px;
+		@include letter-color;
 	}
 	.cpc-wrap {
 		margin-top:70px;
@@ -57,6 +66,29 @@
 }
 .cpc-box {
 	padding: 0 30px;
+	.no-data {
+		text-align: center;
+		margin-top:350px;
+		font-size: 28px;
+		color: #999;
+		.connect {
+			margin-top:35px;
+		}
+		.phone {
+			color: #3ba9db;
+		}
+		.purchase {
+			width: 500px;
+			height: 60px;
+			text-align:center;
+			line-height: 60px;
+			font-size: 28px;
+			background: #3ba9db;
+			color: #fff;
+			border-radius: 20px;
+			margin: 180px auto 0;
+		}
+	}
 }
 .scroll-box {
 	width: 100%;

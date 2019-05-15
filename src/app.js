@@ -21,6 +21,7 @@ class App extends Component {
       'pages/index/index',
       'pages/protocol/protocol',
       'pages/purchase/purchase',
+      'pages/purchase/cgt-detail',
       'pages/introduce/introduce',
       'pages/introduce/acg',
       'pages/agent/agent-detail',
