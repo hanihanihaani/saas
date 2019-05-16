@@ -1,3 +1,4 @@
+@import '../../../styles/mixins.scss';
 @mixin letter-color {
 	font-size:28px;
 	color:#666;
@@ -66,29 +67,9 @@
 }
 .cpc-box {
 	padding: 0 30px;
-	.no-data {
-		text-align: center;
-		margin-top:350px;
-		font-size: 28px;
-		color: #999;
-		.connect {
-			margin-top:35px;
-		}
-		.phone {
-			color: #3ba9db;
-		}
-		.purchase {
-			width: 500px;
-			height: 60px;
-			text-align:center;
-			line-height: 60px;
-			font-size: 28px;
-			background: #3ba9db;
-			color: #fff;
-			border-radius: 20px;
-			margin: 180px auto 0;
-		}
-	}
+	.purchase {
+    @include record-no-data;
+  }
 }
 .scroll-box {
 	width: 100%;

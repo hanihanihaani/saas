@@ -4,6 +4,7 @@ import { CPC_BUY,ORDER_LIST,CPC_CONSUME } from '@service/api'
 import { NavPurchase } from '@components/nav-purchase'
 import { OrderItem } from '@components/order-item'
 import { TongJiNav } from '@components/tongji-nav'
+import { RecordNoData } from '@components/record-no-data'
 import api from '@service/ask'
 import './index.scss'
 import checkImg from '@assets/check.png'
@@ -15,7 +16,9 @@ export default class CpcPurchase extends Component {
 		showDay:0,
 		page:1,
 		orderList:[],
-		cpcList:[]
+		cpcList:[],
+		rebate_balance:'',
+		corpus_balance:''
 	}
 	onShowWho (val) {
 		this.setState({showWho:val})
@@ -63,8 +66,15 @@ export default class CpcPurchase extends Component {
     api.api(CPC_CONSUME,data).then(res => {
       let list = this.state.cpcList
       if (res.data.state == 1) {
+				this.setState({
+					corpus_balance:res.data.data.corpus_balance,
+					rebate_balance:res.data.data.rebate_balance
+				})
         if (res.data.data.list.result.length !== 0) {
-          this.setState({cpcList:list.concat(res.data.data.list.result)})
+					Taro.hideLoading()
+          this.setState({
+						cpcList:list.concat(res.data.data.list.result),
+					})
         } else {
           Taro.showToast({title:'没有更多了',icon:'none'})
         }
@@ -112,11 +122,19 @@ export default class CpcPurchase extends Component {
 			this.getOrderList()
 		})
 	}
+	onScrollToLowers () {
+		Taro.showLoading()
+		this.setState({
+			pageT:this.state.pageT + 1
+		},() => {
+			this.onGetCpcTongji(this.state.showDay,startSel,endSel)
+		})
+	}
 	purchase () {
 		this.setState({showWho:0})
 	}
 	render () {
-		const { isSelect,showWho,orderList,cpcList } = this.state
+		const { isSelect,showWho,orderList,cpcList,corpus_balance,rebate_balance } = this.state
     let height = Taro.getSystemInfoSync().windowHeight - 59
 		return (
 			<View className='cpc-purchase'>
@@ -128,8 +146,8 @@ export default class CpcPurchase extends Component {
 					showWho === 0
 					? <View className='cpc-purchase-list'>
 							<View className='yu-wrap'>
-								<Text className='item'>现金余额：34978元</Text>
-								<Text className='item'>优惠余额：34978元</Text>
+								<Text className='item'>现金余额：{corpus_balance}元</Text>
+								<Text className='item'>优惠余额：{rebate_balance}元</Text>
 							</View>
 							<View className='purchase-title'>购买金额</View>
 							<View className='cpc-wrap'>
@@ -168,15 +186,14 @@ export default class CpcPurchase extends Component {
                 onChooseDay={this.onChooseDay}
 							/>
 							<ScrollView
-                scrollY
+								scrollY
+								onScrollToLower={this.onScrollToLowers}
               >
               {
 								cpcList.length == 0
-								? <View className='no-data'>
-										<View>您还没有创作任何作品！</View>
-										<View className='connect'>如果想要推广您的产品，或者有任何疑问，</View>
-										<View>请拨打电话<Text className='phone'>4006501997</Text></View>
-										<View className='purchase' onClick={this.purchase}>点击购买</View>
+								? <View className='no-data-box'>
+										<RecordNoData />
+        						<View className='purchase' onClick={this.purchase}>点击购买</View>
 									</View>
                 : cpcList.map((cgt,i) => {
                    return <View className='con' key={i} id={i}>

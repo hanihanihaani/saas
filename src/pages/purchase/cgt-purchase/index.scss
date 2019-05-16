@@ -1,3 +1,4 @@
+@import '../../../styles/mixins.scss';
 .tongji-wrap {
   box-sizing: border-box;
   padding: 0 30px;
@@ -21,4 +22,7 @@
     width: 10%;
     text-align: center;
   }
+}
+.no-data-box {
+  @include record-no-data;
 }

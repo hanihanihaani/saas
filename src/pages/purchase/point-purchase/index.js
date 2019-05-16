@@ -98,10 +98,12 @@ export default class PointPurchase extends Component {
     api.api(POINT_CONSUME,data).then(res => {
       let list = this.state.pointList
       if (res.data.state == 1) {
+				this.setState({
+					score:res.data.data.score
+				})
         if (res.data.data.list.result.length !== 0) {
           this.setState({
 						pointList:list.concat(res.data.data.list.result),
-						score:res.data.data.score
 					})
         } else {
           Taro.showToast({title:'没有更多了',icon:'none'})
@@ -121,9 +123,17 @@ export default class PointPurchase extends Component {
 			this.getOrderList()
 		})
 	}
+	onScrollToLowers () {
+		Taro.showLoading({title:'加载中'})
+		this.setState({
+			pageT:this.state.pageT + 1
+		},() => {
+			this.onGetPointTongji(this.state.showDay)
+		})
+	}
 	render () {
 		const { isSelect,showWho,pointList,orderList,score } = this.state
-    let height = Taro.getSystemInfoSync().windowHeight - 59
+		let height = Taro.getSystemInfoSync().windowHeight - 59
 		return (
 			<View className='point'>
 				<NavPurchase 
@@ -134,7 +144,7 @@ export default class PointPurchase extends Component {
 					showWho === 0
 					? <View className='point-purchase'>
 							<View className='yu-wrap'>
-								<Text className='item'>商机点余额：{score.total}元</Text>
+								<Text className='item'>商机点余额：{score.total}个</Text>
 								<Text className='item'>消耗商机点数：{score.balance}</Text>
 							</View>
 							<View className='purchase-title'>购买金额</View>
@@ -169,6 +179,7 @@ export default class PointPurchase extends Component {
 							<TongJiNav 
 								onChooseDay={this.onChooseDay}
 								showNav={true}
+								onScrollToLower={this.onScrollToLowers}
 							/>
 							<ScrollView>
 								{
@@ -176,7 +187,7 @@ export default class PointPurchase extends Component {
 										return <View className='con' key={i}>
 														<Text className='con-item f'>{point.used_score}</Text>
 														<Text className='con-item s'>{point.used_totle}</Text>
-														<Text className='con-item t'>了深刻的减肥呢浪费你的饭快递费善良的看法打开窗你的</Text>
+														<Text className='con-item t'>{point.remake}</Text>
 														<Text className='con-item fo'>{point.createdate}</Text>
 													</View>
 									})

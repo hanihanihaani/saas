@@ -67,7 +67,7 @@ export default class Cpc extends Component {
 				}
 				</View>
 				<View className='b-title'>置顶显示为免费，只为精准商机买单</View>
-				<View className='btn-join' onClick={this.jumpCpcPurchase}>马上加入</View>
+				<View className='btn-join' onClick={this.jumpCpcPurchase}>立即购买</View>
 			</View>
 		)
 	}

@@ -5,6 +5,9 @@ import api from '@service/ask'
 import './index.scss'
 
 export default class CgtPurchaseList extends Component {
+  static defaultProps = {
+    corpus_balance:''
+  }
   state = {
     isSelect:10,
     showWran:false
@@ -36,7 +39,7 @@ export default class CgtPurchaseList extends Component {
       approach:7
     }
     let that = this
-    if (Number.isInteger(parseFloat(this.state.isSelect))) {
+    if (parseFloat(this.state.isSelect) > 1000 && Number.isInteger(parseFloat(this.state.isSelect))) {
       api.api(BAIDU_BUY,data).then(res => {
         if (res.data.state == 1) {
           Taro.requestPayment({
@@ -57,10 +60,11 @@ export default class CgtPurchaseList extends Component {
     }
   }
   render () {
-		const { isSelect,showWran } = this.state
+    const { isSelect,showWran } = this.state
+    const { corpus_balance } = this.props
     return (
       <View className='cgt-purchase-list'>
-        <View className='yu'>现金余额：2000元</View>
+        <View className='yu'>现金余额：{corpus_balance}元</View>
         <View className='purchase-title'>购买金额</View>
 				<View className='cpc-wrap'>
 					<View 

@@ -38,6 +38,7 @@ export const EDIT_ARTICAL = `${host}/saas/article/article_update.php`
 // 个人资料
 export const PERSON_INFO = `${host}/saas/user/info.php`
 export const MODIFY_PWD = `${host}/saas/user/change_password.php`
+export const LOGOUT = `${host}/saas/logout.php`
 
 export const GET_PROVINCE = `${host}/saas/get_province.php`
 export const GET_CITY = `${host}/saas/get_city.php`

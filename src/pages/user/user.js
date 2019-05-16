@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { PERSON_INFO } from '@service/api'
+import { PERSON_INFO,LOGOUT } from '@service/api'
 import api from '@service/ask'
 import { set as setGlobalData, get as getGlobalData } from '@utils/global_data.js'
 import phoneImg from './assets/phone.png'
@@ -9,6 +9,7 @@ import arrowImg from '@assets/arrow.png'
 import setImg from './assets/setting.png'
 import orderImg from './assets/order.png'
 import aboutImg from './assets/about.png'
+import logoutImg from './assets/logout.png'
 import './user.scss'
 let Session = require('@utils/first-login/session')
 
@@ -42,6 +43,30 @@ class User extends Component {
 					})
 				}
 			})
+	}
+	logout () {
+		Taro.showModal({
+			title:'温馨提示',
+			content:'您确认要退出登录吗',
+			success:function (res) {
+				if (res.confirm) {
+					api.api(LOGOUT).then(res => {
+						if (res.data.state == 1) {
+							Taro.showToast({title:'退出登录成功',icon:'none'})
+							// Session.clear()
+							setTimeout(() => {
+								Taro.navigateTo({url:'/pages/login/login'})
+							},500)
+						} else {
+							Taro.showToast({title:res.data.msg,icon:'none'})
+						}
+					})
+				} else if (res.cancel) {
+
+				}
+			}
+		})
+		
 	}
 	componentDidShow () {
 		this.getPersonInfo()
@@ -83,6 +108,11 @@ class User extends Component {
 					<View className='item' onClick={this.jumpOrder}>
 						<Image className='imgs' src={orderImg} />
 						<Text className='title'>我的订单</Text>
+						<Image className='img' src={arrowImg} />
+					</View>
+					<View className='item' onClick={this.logout}>
+						<Image className='imgs' src={logoutImg} />
+						<Text className='title'>退出登录</Text>
 						<Image className='img' src={arrowImg} />
 					</View>
 				</View>

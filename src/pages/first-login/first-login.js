@@ -33,6 +33,13 @@ Page({
                       wx.navigateTo({url:'/pages/login/login'})
                     },1000)
                   }
+                } else {
+                  var options = {
+                    encryptedData: e.detail.encryptedData,
+                    iv: e.detail.iv,
+                    userInfo: userInfo
+                  }
+                  that.doLogin(options);
                 }
                 // 登录态未过期
                 that.setData({
@@ -69,7 +76,6 @@ Page({
           }
           qcloud.requestLogin({
             loginParams, success() {
-                if (Session.get()) {
                   let corpid = Session.get().corpid
                   if (corpid > 0) {
                     wx.switchTab({url:'/pages/index/index'})
@@ -79,8 +85,6 @@ Page({
                       wx.navigateTo({url:'/pages/login/login'})
                     },1000)
                   }
-                } 
-                
               that.setData({
                 userInfo: options.userInfo,
                 logged: true

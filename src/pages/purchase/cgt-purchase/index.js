@@ -4,6 +4,7 @@ import { NavPurchase } from '@components/nav-purchase'
 import { OrderItem } from '@components/order-item'
 import { TongJiNav } from '@components/tongji-nav'
 import { CgtPurchaseList } from './cgt-purchase-list'
+import { RecordNoData } from '@components/record-no-data'
 import { ORDER_LIST, BAIDU_CONSUME } from '@service/api'
 import api from '@service/ask'
 import './index.scss'
@@ -25,7 +26,8 @@ export default class Cgt extends Component {
     page:1,
     pageT:1,
     orderList:[],
-    cgtList:[]
+    cgtList:[],
+		corpus_balance:''
   }
   onShowWho(val) {
     this.setState({showWho:val})
@@ -64,8 +66,14 @@ export default class Cgt extends Component {
     api.api(BAIDU_CONSUME,data).then(res => {
       let list = this.state.cgtList
       if (res.data.state == 1) {
+        Taro.hideLoading()
+        this.setState({
+          corpus_balance:res.data.data.corpus_balance,
+        })
         if (res.data.data.list.result.length !== 0) {
-          this.setState({cgtList:list.concat(res.data.data.list.result)})
+          this.setState({
+            cgtList:list.concat(res.data.data.list.result),
+          })
         } else {
           Taro.showToast({title:'没有更多了',icon:'none'})
         }
@@ -84,13 +92,21 @@ export default class Cgt extends Component {
       this.getOrderList()
     })
   }
+  onScrollToLowers () {
+    Taro.showLoading({title:'加载中'})
+    this.setState({
+      pageT:this.state.pageT + 1
+    },() => {
+      this.onGetCgtTongji(this.state.showDay)
+    })
+  }
   jumpDetail (e) {
     let id = e.currentTarget.id
     let sdate = this.state.cgtList[id].sdate
     Taro.navigateTo({url:`/pages/purchase/cgt-detail?sdate=${sdate}`})
   }
   render () {
-    const { navList, showWho, orderList,cgtList } = this.state
+    const { navList, showWho, orderList,cgtList,corpus_balance } = this.state
     let height = Taro.getSystemInfoSync().windowHeight - 59
     return (
       <View className='cgt-wrap'>
@@ -100,7 +116,9 @@ export default class Cgt extends Component {
         />
         {
           showWho === 0 
-          ? <CgtPurchaseList />
+          ? <CgtPurchaseList 
+              corpus_balance={corpus_balance}
+            />
           : ''
         }
         {
@@ -111,9 +129,15 @@ export default class Cgt extends Component {
               />
               <ScrollView
                 scrollY
+                onScrollToLower={this.onScrollToLowers}
               >
               {
-                cgtList.map((cgt,i) => {
+                cgtList.length == 0
+                ? <View className='no-data-box'>
+                    <RecordNoData />
+        						<View className='purchase' onClick={this.purchase}>点击购买</View>
+                  </View>
+                : cgtList.map((cgt,i) => {
                   return <View className='con' key={i} id={i} onClick={this.jumpDetail}>
                           <Text className='con-item f'>{cgt.hit_num}</Text>
                           <Text className='con-item s'>{cgt.consume}</Text>

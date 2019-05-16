@@ -60,7 +60,21 @@ export default class OrderItem extends Component {
                     <View className='r'>{order.pay_str} </View>
                   </View>
                   <View className='m-wrap'>
-                    <Text className='type'>{order.title}</Text>
+                  {
+                    order.aid == '10062'
+                    ? <Text className='text'>购买金额</Text>
+                    : ''
+                  }
+                  {
+                    order.aid == '10078'
+                    ? <Text className='text'>购买金额</Text>
+                    : ''
+                  }
+                  {
+                    order.aid == '1022'
+                    ? <Text className='type'>购买数量</Text>
+                    : ''
+                  }
                     <Text className='price'>￥{order.req_consume}</Text>
                   </View>
                   <View className='b-wrap'>

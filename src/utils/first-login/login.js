@@ -184,7 +184,7 @@ let requestLogin = function requestLogin(options) {
     method: options.method,
     data: options.data,
     success: function (result) {
-      console.log('result',result)
+      // console.log('result',result)
       // 成功地响应会话信息'
       if (result.data.state == 1) {
           Session.set(result.data);

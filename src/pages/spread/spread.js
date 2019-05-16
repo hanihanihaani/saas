@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Image,Button } from '@tarojs/components'
+import { Loading } from '@components/loading'
 import { ARTICAL_LIST } from '@service/api'
 import api from '@service/ask'
 import Edit from './edit'
@@ -81,7 +82,7 @@ class Spread extends Component {
 			<View className='spread'>
 			{
 				loaded 
-				? <View className='loaded'>加载中...</View>
+				? <Loading />
 				: articalList.length == 0
 					? <View className='no-artical'>
 							<Text className='wran'>您还没有创作任何作品！</Text>
@@ -104,12 +105,12 @@ class Spread extends Component {
 													<Text className='title'>编辑</Text>
 												</View>
 												<View className='b-i' id={i} onClick={this.jumpDetail}>
-													<Image src={previewImg} className='img img-preview' />
-													<Text className='title'>预览</Text>
+													<Image src={shareImg} className='img img-preview' />
+													<Text className='title'>发布</Text>
 												</View>
 												<Button className='b-i share' id={i} openType='share'>
 													<Image src={shareImg} className='img img-share' />
-													<Text className='title'>分享</Text>
+													<Text className='title'>删除</Text>
 												</Button>
 											</View>
 										</View>
