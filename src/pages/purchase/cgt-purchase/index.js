@@ -105,6 +105,9 @@ export default class Cgt extends Component {
     let sdate = this.state.cgtList[id].sdate
     Taro.navigateTo({url:`/pages/purchase/cgt-detail?sdate=${sdate}`})
   }
+  purchase () {
+		this.setState({showWho:0})
+  }
   render () {
     const { navList, showWho, orderList,cgtList,corpus_balance } = this.state
     let height = Taro.getSystemInfoSync().windowHeight - 59
@@ -113,6 +116,7 @@ export default class Cgt extends Component {
         <NavPurchase
           list={navList}
           onShowWho={this.onShowWho}
+          showWho={showWho}
         />
         {
           showWho === 0 

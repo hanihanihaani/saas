@@ -38,6 +38,10 @@ const navList = [{
   id:6,
   img:yuang,
   name:'员工管理'
+},{
+  id:7,
+  img:data,
+  name:'数据统计'
 }]
 export default class Nav extends Component {
   componentDidMount () {
@@ -57,6 +61,8 @@ export default class Nav extends Component {
       Taro.navigateTo({url:'/pages/comment/comment'})
     } else if (id == 2) {
       Taro.navigateTo({url:'/pages/spread/spread'})
+    } else if (id == 7) {
+      Taro.navigateTo({url:'/pages/data/data'})
     }
 	}
 	render () {

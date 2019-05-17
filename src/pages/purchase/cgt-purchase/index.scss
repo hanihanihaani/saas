@@ -24,5 +24,7 @@
   }
 }
 .no-data-box {
-  @include record-no-data;
+  .purchase {
+    @include record-no-data;
+  }
 }

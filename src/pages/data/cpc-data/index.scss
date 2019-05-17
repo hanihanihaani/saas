@@ -1,0 +1,7 @@
+@import '../../../styles/mixins.scss';
+.cpc-box {
+	padding: 0 30px;
+	.purchase {
+    @include record-no-data;
+  }
+}

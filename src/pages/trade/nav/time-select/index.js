@@ -1,11 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Picker } from '@tarojs/components'
+import util from '@utils/util.js'
 import './index.scss'
 
 export default class TimeSelect extends Component {
 	state = {
-		startSel:'2018-12-12',
-		endSel:'2019-12-22'
+		startSel:util.getFormatDates(),
+		endSel:util.getFormatDate()
 	}
 	onStartChange (e) {
 		this.setState({
@@ -27,14 +28,14 @@ export default class TimeSelect extends Component {
 						<View className='start'>
 							<Text className='start-name'>起始</Text>
 							<Picker mode='date' onChange={this.onStartChange}>
-								<View>{this.state.startSel}</View>
+								<View className='d'>{this.state.startSel}</View>
 							</Picker>
 						</View>
 						<Text className='zhi'>至</Text>
 						<View className='end'>
 							<Text className='end-name'>截止</Text>
 							<Picker mode='date' onChange={this.onEndChange}>
-								<View>{this.state.endSel}</View>
+								<View className='d'>{this.state.endSel}</View>
 							</Picker>
 						</View>
 					</View>

@@ -6,6 +6,7 @@ import api from '@service/ask'
 import Edit from './edit'
 import editImg from './assets/edit.png'
 import previewImg from './assets/preview.png'
+import delateImg from './assets/delate.png'
 import shareImg from './assets/share.png'
 import './spread.scss'
 
@@ -104,14 +105,14 @@ class Spread extends Component {
 													<Image src={editImg} className='img img-edit' />
 													<Text className='title'>编辑</Text>
 												</View>
-												<View className='b-i' id={i} onClick={this.jumpDetail}>
-													<Image src={shareImg} className='img img-preview' />
-													<Text className='title'>发布</Text>
-												</View>
 												<Button className='b-i share' id={i} openType='share'>
 													<Image src={shareImg} className='img img-share' />
-													<Text className='title'>删除</Text>
+													<Text className='title'>转发</Text>
 												</Button>
+												<View className='b-i' id={i} onClick={this.jumpDetail}>
+													<Image src={delateImg} className='img img-preview' />
+													<Text className='title'>删除</Text>
+												</View>
 											</View>
 										</View>
 						})

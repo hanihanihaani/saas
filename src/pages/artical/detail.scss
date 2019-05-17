@@ -31,4 +31,36 @@ page {
     font-size: 30px;
     line-height: 1.5;
   }
+  .btn-wrap {
+    margin-top: 80px;
+    width: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
+    .modify {
+      border-top-left-radius: 10px;
+			border-bottom-left-radius: 10px;
+    }
+    .item {
+      display: inline-block;
+      width: 50%;
+      height: 70px;
+      text-align: center;
+      line-height: 70px;
+      font-size: 28px;
+      background: #f6f6f6;
+      color: #666;
+    }
+    .issue {
+      background: #3BA9DB;
+      color: #fff;
+      padding: 0;
+      overflow:inherit;
+      border-radius: 0;
+      border-top-right-radius: 10px;
+			border-bottom-right-radius: 10px;
+      &::after {
+        border: none;
+      }
+    }
+  }
 }

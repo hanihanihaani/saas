@@ -18,9 +18,33 @@ class Artical extends Component {
 		author:'',
 		imgUrl:''
 	}
+	// 判断汉字长度
+	getByLen (val) {
+		let len = 0
+		for (var i = 0; i < val.length; i++) {
+			let length = val.charCodeAt(i)
+			if (length >= 0 && length <= 128) {
+				len += 1
+			} else {
+				len += 2
+			}
+		}
+		return len
+	}
 	handleInput(key,e) {
  		let value = e.target.value
     this.setState({[key]: value}) 
+	}
+	handleBlur (e) {
+		let val = e.detail.value
+		let len = this.getByLen(val)
+		if (len < 16) {
+			let letter = Math.floor((16-len)/2)
+			Taro.showToast({title:`标题最少8个字，您还差${letter}个字`,icon:'none'})
+		} else if (len > 60) {
+			let letter = Math.floor((len - 60)/2)
+			Taro.showToast({title:`标题最多30个字，您超出${letter}个字`,icon:'none'})
+		}
 	}
 	upImg () {
 	  var that = this;
@@ -56,46 +80,67 @@ class Artical extends Component {
     })
 	}
 	issue () {
-		let data = {
-			title:this.state.title,
-			content:this.state.content,
-			author:this.state.author,
-			cover:this.state.imgUrl
-		}
-		api.api(ISSUE_ARTICAL,data).then(res => {
-			if (res.data.state == 0) {
-				Taro.showToast({title:'发布成功',icon:'none'})
-				setTimeout(() => {
-					Taro.redirectTo({url:'/pages/spread/spread'})
-				},1000)
+		if (this.state.title) {
+			if (this.state.author) {
+				if (this.state.content) {
+					if (this.state.imgUrl) {
+						let data = {
+							title:this.state.title,
+							content:this.state.content,
+							author:this.state.author,
+							cover:this.state.imgUrl
+						}
+						api.api(ISSUE_ARTICAL,data).then(res => {
+							if (res.data.state == 0) {
+								Taro.showToast({title:'发布成功',icon:'none'})
+								setTimeout(() => {
+									Taro.redirectTo({url:'/pages/spread/spread'})
+								},1000)
+							} else {
+								Taro.showToast({title:res.data.msg,icon:'none'})
+							}
+						})
+					} else {
+						Taro.showToast({title:'请选择封面',icon:'none'})
+					}
+				} else {
+					Taro.showToast({title:'请输入内容',icon:'none'})
+				}
 			} else {
-				Taro.showToast({title:res.data.msg,icon:'none'})
+				Taro.showToast({title:'请输入作者',icon:'none'})
 			}
-		})
+		} else {
+			Taro.showToast({title:'请输入标题',icon:'none'})
+		}
 	}
 	update () {
-		let data = {
-			title:this.state.title,
-			content:this.state.content,
-			author:this.state.author,
-			cover:this.state.imgUrl,
-			id:this.state.id
-		}
-		api.api(EDIT_ARTICAL,data).then(res => {
-			if (res.data.state == 0) {
-				Taro.showToast({title:'修改成功',icon:'none'})
-				setTimeout(() => {
-					Taro.redirectTo({url:'/pages/spread/spread'})
-				},1000)
-			} else {
-				Taro.showToast({title:res.data.msg,icon:'none'})
+		let len = this.getByLen(this.state.title)
+		if (len >= 16 && len <= 60 ) {
+			let data = {
+				title:this.state.title,
+				content:this.state.content,
+				author:this.state.author,
+				cover:this.state.imgUrl,
+				id:this.state.id
 			}
-		})
+			api.api(EDIT_ARTICAL,data).then(res => {
+				if (res.data.state == 0) {
+					Taro.showToast({title:'修改成功',icon:'none'})
+					setTimeout(() => {
+						Taro.redirectTo({url:'/pages/spread/spread'})
+					},1000)
+				} else {
+					Taro.showToast({title:res.data.msg,icon:'none'})
+				}
+			})
+		} else {
+			Taro.showToast({title:'标题最少为8个字，最多为30个字',icon:'none'})
+		}
+		
 	}
 	getOneArtical (id) {
 		let data = {id:id}
 		api.api(ARTICAL_DETAIL,data).then(res => {
-			console.log('res',res)
 			if (res.data.state == 0) {
 				this.setState({
 					title:res.data.data.title,
@@ -118,46 +163,78 @@ class Artical extends Component {
 			this.getOneArtical(id)
 		}
 	}
+	preview () {
+		if (this.state.title) {
+			if (this.state.author) {
+				if (this.state.content) {
+					if (this.state.imgUrl) {
+						let data = {
+							title:this.state.title,
+							content:this.state.content,
+							author:this.state.author,
+							cover:this.state.imgUrl
+						}
+						api.api(ISSUE_ARTICAL,data).then(res => {
+							if (res.data.state == 0) {
+								let id = res.data.data.id
+								Taro.navigateTo({url:`/pages/artical/detail?id=${id}&showBtn=1`})
+							} else {
+								Taro.showToast({title:res.data.msg,icon:'none'})
+							}
+						})
+					} else {
+						Taro.showToast({title:'请选择封面',icon:'none'})
+					}
+				} else {
+					Taro.showToast({title:'请输入内容',icon:'none'})
+				}
+			} else {
+				Taro.showToast({title:'请输入作者',icon:'none'})
+			}
+		} else {
+			Taro.showToast({title:'请输入标题',icon:'none'})
+		}
+	}
 	render () {
 		const { isShowImg, isShowBtn, imgUrl, title, content, author } = this.state
 		return (
 			<View className='artical'>
 				<View className='wrap'>
 					<View className='item'>
-						<Text className='item-name'>文章标题：</Text>
 						<Input 
 							type='text' 
 							className='input' 
 							value={title}
 							onInput={this.handleInput.bind(this,'title')}
+							onBlur={this.handleBlur}
+							placeholder='请输入文章标题（8-30字)'
 						/>
 					</View>
 					<View className='item'>
-						<Text className='item-name'>文章作者：</Text>
 						<Input 
 							type='text' 
-							className='input'
+							className='input inputs'
 							value={author} 
 							onInput={this.handleInput.bind(this,'author')}
+							placeholder='输入作者'
 						/>
 					</View>
 					<View className='item items'>
-						<Text className='item-name'>文章详情：</Text>
 						<Textarea 
 							className='textarea'
 							value={content}
 							onInput={this.handleInput.bind(this,'content')}
+							placeholder='请输入正文'
 						/>
 					</View>
 					<View className='item items'>
-						<Text className='item-name'>封面：</Text>
 						<View className='img-wrap'>
+							<Text className='choose-cover'>添加封面</Text>
 						{
 							!isShowBtn
 							?	!isShowImg 
 								?		<View className='upload' onClick={this.upImg}>
 											<Image src={uploadImg} className='up-img' />
-											<View className='choose-up'>选择封面</View>
 										</View>
 								: <Image src={imgUrl} className='show-img' />
 							: <Image src={imgUrl} className='show-img' onClick={this.upImg} />
@@ -167,7 +244,10 @@ class Artical extends Component {
 				</View>
 				{
 					!isShowBtn
-					?	<View className='issue' onClick={this.issue}>快速发布</View>
+					?	<View className='issues-btn'>
+							<View className='issues pre' onClick={this.preview}>预览</View>
+							<View className='issues sss' onClick={this.issue}>快速发布</View>
+						</View>
 					:	<View className='issue' onClick={this.update}>提交修改</View>
 				}
 			</View>

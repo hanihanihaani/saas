@@ -22,7 +22,7 @@ class Market extends Component {
 				<View className='btn-wrap'>
 					<View className='btn' onClick={this.jumpCpc}>订单直通车</View>
 					<View className='btn' onClick={this.jumpPoint}>商机点</View>
-					<View className='btn' onClick={this.jumpAcg}>百度爱采购</View>
+					<View className='btn' onClick={this.jumpAcg}>爱采购</View>
 				</View>
 				<View className='wran'>更多模式正在接入中</View>
 			</View>

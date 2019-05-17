@@ -1,3 +1,4 @@
+@import '../../../styles/mixins.scss';
 @mixin padding-style {
 	padding: 0 30px;
 	box-sizing: border-box;
@@ -76,6 +77,11 @@
 }
 .point-box{
 	@include padding-style;
+	.no-data-box {
+		.purchase {
+			@include record-no-data;
+		}
+	}
 	.con {
 		display: flex;
 		justify-content: space-between;

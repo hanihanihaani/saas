@@ -4,6 +4,7 @@ import { POINT_BUY,POINT_CONSUME,ORDER_LIST} from '@service/api'
 import { NavPurchase } from '@components/nav-purchase'
 import { OrderItem } from '@components/order-item'
 import { TongJiNav } from '@components/tongji-nav'
+import { RecordNoData } from '@components/record-no-data'
 import api from '@service/ask'
 import './index.scss'
 import checkImg from '@assets/check.png'
@@ -131,6 +132,9 @@ export default class PointPurchase extends Component {
 			this.onGetPointTongji(this.state.showDay)
 		})
 	}
+	purchase () {
+		this.setState({showWho:0})
+	}
 	render () {
 		const { isSelect,showWho,pointList,orderList,score } = this.state
 		let height = Taro.getSystemInfoSync().windowHeight - 59
@@ -145,7 +149,7 @@ export default class PointPurchase extends Component {
 					? <View className='point-purchase'>
 							<View className='yu-wrap'>
 								<Text className='item'>商机点余额：{score.total}个</Text>
-								<Text className='item'>消耗商机点数：{score.balance}</Text>
+								<Text className='item'>消耗商机点数：{score.balance}个</Text>
 							</View>
 							<View className='purchase-title'>购买金额</View>
 								<View className='cpc-wrap'>
@@ -183,13 +187,18 @@ export default class PointPurchase extends Component {
 							/>
 							<ScrollView>
 								{
-									pointList.map((point,i) => {
-										return <View className='con' key={i}>
-														<Text className='con-item f'>{point.used_score}</Text>
-														<Text className='con-item s'>{point.used_totle}</Text>
-														<Text className='con-item t'>{point.remake}</Text>
-														<Text className='con-item fo'>{point.createdate}</Text>
-													</View>
+									pointList.length == 0
+									? <View className='no-data-box'>
+											<RecordNoData />
+											<View className='purchase' onClick={this.purchase}>点击购买</View>
+										</View>
+									: pointList.map((point,i) => {
+											return <View className='con' key={i}>
+																<Text className='con-item f'>{point.used_score}</Text>
+																<Text className='con-item s'>{point.used_totle}</Text>
+																<Text className='con-item t'>{point.remake}</Text>
+																<Text className='con-item fo'>{point.createdate}</Text>
+															</View>
 									})
 								}
 							</ScrollView>

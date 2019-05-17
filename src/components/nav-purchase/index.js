@@ -23,6 +23,13 @@ export default class NavPurchase extends Component {
     this.setState({
       toggleFlag:key
     })
+    if (key == 0) {
+      this.props.onGetCpcTongji()
+    } else if (key == 1) {
+      this.props.onGetPointTongji()
+    } else if (key == 2) {
+      this.props.onGetCgtTongji()
+    }
   }
   componentWillReceiveProps (nexprops) {
     if (nexprops.showWho == 0) {

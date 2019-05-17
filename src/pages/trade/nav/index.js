@@ -182,6 +182,10 @@ export default class Nav extends Component {
 					areaRange:areaRange
 				})
 			}
+		} else {
+			this.setState({
+				areaRange:[['暂无'],['暂无']]
+			})
 		}
 	}
 	render () {
@@ -198,7 +202,17 @@ export default class Nav extends Component {
 							onColumnChange={this.columnChange}
 							onChange={this.onAreaChange}
 						>
-							<View>{areaRange[0][areaIndex[0]] || '暂无'}-{areaRange[1][areaIndex[1]] || '暂无'}<Image src={areaImg} className='img' /></View>
+						{
+							areaRange[0][0] == '暂无'
+							? <View>
+									地点
+									<Image src={areaImg} className='img' />
+								</View>
+							: <View>
+									{areaRange[0][areaIndex[0]]}-{areaRange[1][areaIndex[1]]}
+									<Image src={areaImg} className='img' />
+								</View>
+						}
 						</Picker>
 					</View>
 					<View 

@@ -72,7 +72,7 @@ export default class OrderItem extends Component {
                   }
                   {
                     order.aid == '1022'
-                    ? <Text className='type'>购买数量</Text>
+                    ? <Text className='type'>购买数量:{order.req_consume == '499.00' ? '600个' : '200个'}</Text>
                     : ''
                   }
                     <Text className='price'>￥{order.req_consume}</Text>

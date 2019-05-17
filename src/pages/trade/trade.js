@@ -40,7 +40,6 @@ class Trade extends Component {
 						business:res.data.data,
 					})
 				} else {
-					Taro.showToast({title:'没有更多了',icon:'none'})
 				}
 			} else {
 				// Taro.showToast({title:res.data.msg,icon:'none'})
