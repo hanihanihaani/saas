@@ -2,29 +2,30 @@
 .tongji-wrap {
   box-sizing: border-box;
   padding: 0 30px;
+  .no-data-box {
+    .purchase {
+      @include record-no-data;
+    }
+  }
+  .con {
+    display: flex;
+    justify-content: space-between;
+    font-size: 28px;
+    color: #666;
+    margin-top: 45px;
+    .f {
+      width: 8%;
+      text-align: center;
+    }
+    .s {
+      width: 10%;
+      text-align: center;
+    }
+  }
 }
 .order-box {
   width: 100%;
   background: #f6f6f6;
   padding-top: 34px;
 }
-.con {
-  display: flex;
-  justify-content: space-between;
-  font-size: 28px;
-  color: #666;
-  margin-top: 45px;
-  .f {
-    width: 8%;
-    text-align: center;
-  }
-  .s {
-    width: 10%;
-    text-align: center;
-  }
-}
-.no-data-box {
-  .purchase {
-    @include record-no-data;
-  }
-}
+

@@ -1,30 +1,23 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @seivice/api --silent --no-progress
+  D:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
 
 PATH: 
-  C:\Users\Administrator\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\local\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\Users\Administrator\bin;C:\Program Files\Java\jdk1.8.0_152\bin;C:\Program Files\Java\jdk1.8.0_152\jre\bin;C:\ProgramData\Oracle\Java\javapath;C:\apache-ant-1.9.7\bin;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_152\jre\lib\rt.jar;.;C:\Program Files\TortoiseSVN\bin;D:\Program Files\Git\cmd;D:\Program Files\Microsoft VS Code\bin;C:\Program Files\nodejs;D:\Program Files\Microsoft VS Code\bin,C;D:\Program Files\Git\Program Files\MongoDB\Server\3.4\bin;C:\Users\Administrator\AppData\Roaming\npm;D:\Program Files (x86)\MyDrivers\DriverGenius;D:\Program Files (x86)\MyDrivers\DriverGenius\ksoft;D:\Program Files\Git\usr\bin\vendor_perl;D:\Program Files\Git\usr\bin\core_perl
+  C:\Users\Administrator\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\local\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\Users\Administrator\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;D:\Program Files\Git\cmd;D:\Program Files\Java\jdk1.8.0_152\bin;D:\Program Files\TortoiseSVN\bin;D:\Program Files\nodejs;C:\Program Files\MongoDB\Server\3.4\bin;D:\Program Files\Microsoft VS Code\bin.C;D:\Program Files\Git\Users\Administrator\node_modules;C:\Users\Administrator\AppData\Roaming\npm;D:\Sdk\platform-tools;D:\Program Files\Git\usr\bin\vendor_perl;D:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
-  1.10.1
+  1.6.0
 
 Node version: 
-  8.12.0
+  8.11.1
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@seivice%2fapi: Not found
-      at Request.params.callback [as _callback] (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:61073:18)
-      at Request.self.callback (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:120166:22)
-      at emitTwo (events.js:126:13)
-      at Request.emit (events.js:214:7)
-      at Request.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:121138:10)
-      at emitOne (events.js:116:13)
-      at Request.emit (events.js:211:7)
-      at IncomingMessage.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:121060:12)
-      at Object.onceWrapper (events.js:313:30)
-      at emitNone (events.js:111:20)
+  Error: connect ETIMEDOUT 104.16.23.35:443
+      at Object._errnoException (util.js:1022:11)
+      at _exceptionWithHostPort (util.js:1044:20)
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
 
 npm manifest: 
   {
@@ -378,12 +371,12 @@ Lockfile:
     dependencies:
       uglify-js "^3.3.24"
   
-  "@tarojs/redux@^1.2.20":
-    version "1.2.20"
-    resolved "https://registry.yarnpkg.com/@tarojs/redux/-/redux-1.2.20.tgz#42737c9b14d9700ce5af971049139f7d978de518"
-    integrity sha512-gU8o5gFyNaglDAfAbbInguhn/tnnKRviC/30JZXqtZCnwdA9gvIkmbHrfhjV07ARV2DATFjCCVQ83T7ZH8H5eA==
+  "@tarojs/redux@^1.2.21":
+    version "1.2.26"
+    resolved "https://registry.yarnpkg.com/@tarojs/redux/-/redux-1.2.26.tgz#4635de8609394fe30e0f50be4688b012c036758d"
+    integrity sha512-rlai0J129qHfKptSBpT2fl45GOcbhUMjA6bpKyVG18d1bs+Rr7R32vuBJgxwotnEm6liDVQ5IlKxzQiekY5Vzg==
     dependencies:
-      "@tarojs/utils" "1.2.20"
+      "@tarojs/utils" "1.2.26"
   
   "@tarojs/rn-runner@^1.2.20":
     version "1.2.20"
@@ -479,10 +472,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.17.tgz#be32efd035c68cf8aea3878e67bf899564bc2f6a"
     integrity sha512-vB3BxGhGAYcmmdsz5IMMgdaZVV43Am6OZOS1mHC5rG0bPDVjsX0M+dOuwWXD1JonqyLzR61wKvz8rgAoAMoWhA==
   
-  "@tarojs/utils@1.2.20":
-    version "1.2.20"
-    resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.20.tgz#7af8274b724f719ee52538b16411faf2c52d22e5"
-    integrity sha512-tFOHUbgxRd/WYtDLGtRg73fmQU7KshHSGBsnZeH1Jtkmt8jJlkr30NrZEaSPB+nabiBVpWK2tpNVA2FI3vE2lw==
+  "@tarojs/utils@1.2.26":
+    version "1.2.26"
+    resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.26.tgz#de60d2e3cbc941259ca0672009c993628188975b"
+    integrity sha512-kOm4NAME2P3CRvX0HHg2iwUFY/iv7QGo/dhZkjuHueNQvtNMiqpzs1Q9PpB4C6saL1XZ8GBfyl//BeIAh73ssw==
   
   "@tarojs/webpack-runner@1.2.17":
     version "1.2.17"
