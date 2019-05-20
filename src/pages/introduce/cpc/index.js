@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Input } from '@tarojs/components'
-import cpcImg from '@pages/index/banner/assets/banner.png' 
+import cpcImg from '../assets/cpc.png'
+import cpcsImg from '../assets/cpcs.png' 
 import one from '../assets/1.png'
 import two from '../assets/2.png'
 import three from '../assets/3.png'
@@ -65,6 +66,9 @@ export default class Cpc extends Component {
 							</View>
 					})
 				}
+				</View>
+				<View className='img-wrap'>
+					<Image src={cpcsImg} className='cpcs-img' />
 				</View>
 				<View className='b-title'>置顶显示为免费，只为精准商机买单</View>
 				<View className='btn-join' onClick={this.jumpCpcPurchase}>立即购买</View>

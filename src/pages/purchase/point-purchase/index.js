@@ -107,7 +107,7 @@ export default class PointPurchase extends Component {
 						pointList:list.concat(res.data.data.list.result),
 					})
         } else {
-          Taro.showToast({title:'没有更多了',icon:'none'})
+          // Taro.showToast({title:'没有更多了',icon:'none'})
         }
       }
     })

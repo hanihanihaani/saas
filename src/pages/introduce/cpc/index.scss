@@ -1,7 +1,8 @@
 .cpc {
+	padding-bottom: 50px;
 	.cpc-img {
 		width:100%;
-		height:320px;
+		height:337px;
 		margin-top:20px;
 	}
 	.title {
@@ -32,11 +33,15 @@
 			font-size:28px;
 		}
 	}
+	.cpcs-img {
+		margin-top: 40px;
+		width: 100%;
+		height: 948px;
+	}
 	.b-title {
 		text-align:center;
 		color:#3ba9db;
 		font-size:28px;
-		margin-top:110px;
 	}
 	.btn-join {
 		width:310px;
@@ -47,6 +52,6 @@
 		background:#3ba9db;
 		font-size:28px;
 		border-radius:12px;
-		margin:70px auto 0;
+		margin:40px auto 0;
 	}
 }

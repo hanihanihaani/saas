@@ -8,7 +8,8 @@
 		line-height:80px;
 		color:#333;
 		text-align:center;
-		font-size:28px;
+		font-size:30px;
+		font-weight: 600;
 		.img {
 			display: inline-block;
 			width: 25px;
@@ -21,7 +22,7 @@
 		width: 50%;
 	}
 	.active,.active1 {
-		color:#2b95fd;
+		color:#3ba9db;
 		position:relative;
 		&:after {
 			content:'';

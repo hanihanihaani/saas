@@ -246,7 +246,7 @@ class Artical extends Component {
 					!isShowBtn
 					?	<View className='issues-btn'>
 							<View className='issues pre' onClick={this.preview}>预览</View>
-							<View className='issues sss' onClick={this.issue}>快速发布</View>
+							<View className='issues sss' onClick={this.issue}>保存</View>
 						</View>
 					:	<View className='issue' onClick={this.update}>提交修改</View>
 				}

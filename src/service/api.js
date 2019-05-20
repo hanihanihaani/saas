@@ -35,6 +35,7 @@ export const ISSUE_ARTICAL = `${host}/saas/article/article_issue.php`
 export const ARTICAL_LIST = `${host}/saas/article/article_list.php`
 export const ARTICAL_DETAIL = `${host}/saas/article/article_one.php`
 export const EDIT_ARTICAL = `${host}/saas/article/article_update.php`
+export const DEL_ARTICAL = `${host}/saas/article/article_del.php`
 // 个人资料
 export const PERSON_INFO = `${host}/saas/user/info.php`
 export const MODIFY_PWD = `${host}/saas/user/change_password.php`

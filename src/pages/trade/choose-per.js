@@ -16,7 +16,8 @@ class ChoosePer extends Component {
 	state = {
 		isChoose:'',
 		page:1,
-		choosePerList:[]
+		choosePerList:[],
+		showItem:0,
 	}
 	componentDidMount () {
 		this.setState({roleType:Session.get().role_type})
@@ -89,7 +90,7 @@ class ChoosePer extends Component {
 		}
 	}
 	render () {
-		const { choosePerList,isChoose,roleType } = this.state
+		const { choosePerList,isChoose,roleType,showItem } = this.state
 		let  height = `${Taro.getSystemInfoSync().windowHeight-90}px`
 
 		let perItem = choosePerList.map((per,i) => {
@@ -104,6 +105,10 @@ class ChoosePer extends Component {
 		})
 		return (
 			<View className='choose-per'>
+				<View className='choose-nav'>
+					<Text className='item'>代理商</Text>
+					<Text className='item'>销售</Text>
+				</View>
 				<ScrollView 
 					scrollY 
 					className='scroll-wrap' 

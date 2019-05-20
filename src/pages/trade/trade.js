@@ -123,7 +123,7 @@ class Trade extends Component {
 				pageMatch:1
 			})
 		})
-		if (!choose) {
+		if (!choose && !this.state.start) {
 			this.setState({
 				businessSj:[]
 			})

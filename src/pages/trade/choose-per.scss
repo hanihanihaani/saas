@@ -4,6 +4,10 @@ page {
 	padding:0;
 	background:#f6f6f6;
 	.choose-per {
+		.choose-nav {
+			display: flex;
+			justify-content: space-around;
+		}
 		.no-data-wrap {
 			.now-no {
 				text-align: center;

@@ -13,10 +13,10 @@ class DataAll extends Component {
   }
   state = {
     list:[{
-      name:'订单直通车',
+      name:'商机点',
       id:1
     },{
-      name:'商机点',
+      name:'订单直通车',
       id:2
     },{
       name:'爱采购',
@@ -42,9 +42,9 @@ class DataAll extends Component {
       endSel:endSel
     })
     if (this.state.showWho === 0) {
-      this.onGetCpcTongji(val,startSel,endSel)
-    } else if (this.state.showWho === 1) {
       this.onGetPointTongji(val,startSel,endSel)
+    } else if (this.state.showWho === 1) {
+      this.onGetCpcTongji(val,startSel,endSel)
     } else if (this.state.showWho === 2) {
       this.onGetCgtTongji(val,startSel,endSel)
     }
@@ -70,7 +70,7 @@ class DataAll extends Component {
 						cpcList:list.concat(res.data.data.list.result),
 					})
         } else {
-          Taro.showToast({title:'没有更多了',icon:'none'})
+          // Taro.showToast({title:'没有更多了',icon:'none'})
         }
       }
     })
@@ -103,7 +103,7 @@ class DataAll extends Component {
 						pointList:list.concat(res.data.data.list.result),
 					})
         } else {
-          Taro.showToast({title:'没有更多了',icon:'none'})
+          // Taro.showToast({title:'没有更多了',icon:'none'})
         }
       }
     })
@@ -137,7 +137,7 @@ class DataAll extends Component {
             cgtList:list.concat(res.data.data.list.result),
           })
         } else {
-          Taro.showToast({title:'没有更多了',icon:'none'})
+          // Taro.showToast({title:'没有更多了',icon:'none'})
         }
       }
     })
@@ -152,17 +152,18 @@ class DataAll extends Component {
     })
   }
   componentDidShow () {
-    this.onGetCpcTongji(0,'','')
+    this.onGetPointTongji(0,'','')
   }
   purchase (val) {
     if (val === 0) {
-      Taro.navigateTo({url:'/pages/purchase/purchase?type=0'})
-    } else if (val === 1) {
       Taro.navigateTo({url:'/pages/purchase/purchase?type=1'})
+    } else if (val === 1) {
+      Taro.navigateTo({url:'/pages/purchase/purchase?type=0'})
     } else if (val === 2) {
       Taro.navigateTo({url:'/pages/purchase/purchase?type=2'})
     }
   }
+ 
   render () {
     const { list,showWho,cpcList,pointList,cgtList } = this.state
     return (
@@ -170,11 +171,40 @@ class DataAll extends Component {
         <NavPurchase
           list={list}
           onGetCgtTongji={this.onGetCgtTongji}
+          onGetCpcTongji={this.onGetCpcTongji}
           onGetPointTongji={this.onGetPointTongji}
           onShowWho={this.onShowWho}
         />
         {
           showWho === 0
+          ? <View className='point-box'>
+              <TongJiNav 
+                onChooseDay={this.onChooseDay}
+                showNav={true}
+                onScrollToLower={this.onScrollToLowerPoint}
+              />
+              <ScrollView>
+                {
+                  pointList.length == 0
+                  ? <View className='no-data-box'>
+                      <RecordNoData />
+                      <View className='purchase' onClick={this.purchase.bind(this,1)}>点击购买</View>
+                    </View>
+                  : pointList.map((point,i) => {
+                      return <View className='con' key={i}>
+                                <Text className='con-item f'>{point.used_score}</Text>
+                                <Text className='con-item s'>{point.used_totle}</Text>
+                                <Text className='con-item t'>{point.remake}</Text>
+                                <Text className='con-item fo'>{point.createdate}</Text>
+                              </View>
+                  })
+                }
+              </ScrollView>
+            </View>
+          : ''
+        }
+        {
+          showWho === 1
           ? <View className='cpc-box'>
               <TongJiNav 
                 onChooseDay={this.onChooseDay}
@@ -198,34 +228,6 @@ class DataAll extends Component {
                           </View>
                   })
               }
-              </ScrollView>
-            </View>
-          : ''
-        }
-        {
-          showWho === 1
-          ? <View className='point-box'>
-              <TongJiNav 
-                onChooseDay={this.onChooseDay}
-                showNav={true}
-                onScrollToLower={this.onScrollToLowerPoint}
-              />
-              <ScrollView>
-                {
-                  pointList.length == 0
-                  ? <View className='no-data-box'>
-                      <RecordNoData />
-                      <View className='purchase' onClick={this.purchase.bind(this,1)}>点击购买</View>
-                    </View>
-                  : pointList.map((point,i) => {
-                      return <View className='con' key={i}>
-                                <Text className='con-item f'>{point.used_score}</Text>
-                                <Text className='con-item s'>{point.used_totle}</Text>
-                                <Text className='con-item t'>{point.remake}</Text>
-                                <Text className='con-item fo'>{point.createdate}</Text>
-                              </View>
-                  })
-                }
               </ScrollView>
             </View>
           : ''

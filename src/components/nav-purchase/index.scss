@@ -14,11 +14,9 @@
   }
   .active {
     display: inline-block;
-    // padding-bottom: 30px;
-    // box-sizing: border-box;
     font-size: 40px;
     font-weight: bold;
     color: #3ba9db;
-    // border-bottom:4px solid #3ba9db;
+    transform: translateY(-5px)
   }
 }

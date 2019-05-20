@@ -6,7 +6,9 @@ import TimeSelect from './time-select'
 import Filter from './filter'
 import areaImg from '@assets/area.png'
 import timeImg from '@assets/time.png'
+import timesImg from '@assets/times.png'
 import filterImg from '@assets/filter.png'
+import filtersImg from '@assets/filters.png'
 import './index.scss'
 
 export default class Nav extends Component {
@@ -165,11 +167,12 @@ export default class Nav extends Component {
 		})
 		this.getAreaBusiness(chooseProvinceId,chooseCityId)
 	}
-	componentWillReceiveProps(nextProps) {
-		if (Object.keys(nextProps.sjMes).length !== 0) {
-			const provinceList = Object.values(nextProps.sjMes.province)
-			const provinceListId = Object.keys(nextProps.sjMes.province)
-			let cityArray = Object.values(nextProps.sjMes.city)
+	componentDidShow () {
+		console.log('s',this.props.sjMes)
+		if (Object.keys(this.props.sjMes).length !== 0) {
+			const provinceList = Object.values(this.props.sjMes.province)
+			const provinceListId = Object.keys(this.props.sjMes.province)
+			let cityArray = Object.values(this.props.sjMes.city)
 			if (this.state.areaRange.length < 2) {
 				let areaRange = this.state.areaRange
 				provinceList.unshift('全国')
@@ -188,6 +191,29 @@ export default class Nav extends Component {
 			})
 		}
 	}
+	// componentWillReceiveProps(nextProps) {
+	// 	if (Object.keys(nextProps.sjMes).length !== 0) {
+	// 		const provinceList = Object.values(nextProps.sjMes.province)
+	// 		const provinceListId = Object.keys(nextProps.sjMes.province)
+	// 		let cityArray = Object.values(nextProps.sjMes.city)
+	// 		if (this.state.areaRange.length < 2) {
+	// 			let areaRange = this.state.areaRange
+	// 			provinceList.unshift('全国')
+	// 			areaRange.push(provinceList)
+	// 			areaRange.push(['全国'])
+	// 			// areaRange.push(cityChooseList)
+	// 			this.setState({
+	// 				provinceListId:provinceListId,
+	// 				cityArray:cityArray,
+	// 				areaRange:areaRange
+	// 			})
+	// 		}
+	// 	} else {
+	// 		this.setState({
+	// 			areaRange:[['暂无'],['暂无']]
+	// 		})
+	// 	}
+	// }
 	render () {
 		const { isShowTime, isShowFilter, areaIndex, areaRange, filterCon, isChooseWho } = this.state
 		const { roleType } = this.props
@@ -220,7 +246,7 @@ export default class Nav extends Component {
 						onClick={this.onShowTimes.bind(this)}
 					>
 						时间
-						<Image src={timeImg} className='img' />
+						<Image src={ isShowTime ? timesImg : timeImg } className='img' />
 					</View>
 					{
 						roleType !== '10'
@@ -229,7 +255,7 @@ export default class Nav extends Component {
 								onClick={this.onShowFilters.bind(this)}
 							>
 								{filterCon}
-								<Image src={filterImg} className='img' />
+								<Image src={ isShowFilter ? filtersImg : filterImg } className='img' />
 							</View>
 						: ''
 					}

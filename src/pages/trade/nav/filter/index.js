@@ -13,7 +13,7 @@ export default class Filter extends Component {
 		},{
 			id:2,
 			name:'未分配'
-		}]
+		}],
 	}
 	componentDidMount () {
 		this.setState({isChoose:this.props.choose})
@@ -53,7 +53,7 @@ export default class Filter extends Component {
 													isChoose == i ? <Image src={filterImg} className='r-l' /> : ''
 												}
 												<Text 
-													className='right-item' 
+													className={`right-item ${isChoose == i ? 'active' : ''}`} 
 													id={i} 
 													onClick={this.onChooseItem.bind(this)}
 												>

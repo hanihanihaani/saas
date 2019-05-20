@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Image,Picker } from '@tarojs/components'
+import util from '@utils/util.js'
 import './index.scss'
 
 export default class TongJiNav extends Component {
@@ -9,8 +10,8 @@ export default class TongJiNav extends Component {
   state = {
     toggleFlag:0,
     isShowDateModal:false,
-    startSel:'2019-1-12',
-		endSel:'2019-12-22'
+    startSel:util.getFormatDates(),
+		endSel:util.getFormatDate()
   }
   toggleNav (val) {
     this.setState({toggleFlag:val})
@@ -75,14 +76,14 @@ export default class TongJiNav extends Component {
                   <View className='start'>
                     <Text className='start-name'>起始</Text>
                     <Picker mode='date' onChange={this.onStartChange}>
-                      <View>{this.state.startSel}</View>
+                      <View className='d'>{this.state.startSel}</View>
                     </Picker>
                   </View>
                   <Text className='zhi'>至</Text>
                   <View className='end'>
                     <Text className='end-name'>截止</Text>
                     <Picker mode='date' onChange={this.onEndChange}>
-                      <View>{this.state.endSel}</View>
+                      <View className='d'>{this.state.endSel}</View>
                     </Picker>
                   </View>
                 </View>

@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Image,Button } from '@tarojs/components'
 import { Loading } from '@components/loading'
-import { ARTICAL_LIST } from '@service/api'
+import { ARTICAL_LIST, DEL_ARTICAL } from '@service/api'
 import api from '@service/ask'
 import Edit from './edit'
 import editImg from './assets/edit.png'
@@ -52,12 +52,33 @@ class Spread extends Component {
 		let id = this.state.articalList[e.currentTarget.id].id
 		Taro.navigateTo({url:`/pages/artical/artical?id=${id}`})
 	}
-	jumpDetail (e) {
-		let id = this.state.articalList[e.currentTarget.id].id
-		Taro.navigateTo({url:`/pages/artical/detail?id=${id}`})
-	}
+	// jumpDetail (e) {
+	// 	let id = this.state.articalList[e.currentTarget.id].id
+	// 	Taro.navigateTo({url:`/pages/artical/detail?id=${id}`})
+	// }
 	jumpArticals () {
 		Taro.navigateTo({url:'/pages/artical/artical'})
+	}
+	delArtical (e) {
+		let id = this.state.articalList[e.currentTarget.id].id
+		let that = this
+		Taro.showModal({
+			title:'温馨提示',
+			content:'您确认要删除该条信息吗',
+			success:function (res) {
+				if (res.confirm) {
+					let data = {id:id}
+					api.api(DEL_ARTICAL,data).then(res => {
+						if (res.data.state == 1) {
+							Taro.showToast({title:'删除成功',icon:'none'})
+							that.getArticalList()
+						} else {
+							Taro.showToast({title:res.data.msg,icon:'none'})
+						}
+					})
+				}
+			}
+		})
 	}
 	componentDidShow () {
 		this.getArticalList()
@@ -94,7 +115,7 @@ class Spread extends Component {
 					{
 						articalList.map((artical,i) => {
 							return <View className='item-wrap' key={i}>
-											<View className='top'>
+											<View className='top' id={i} onClick={this.jumpArtical}> 
 												<View className='con'>{artical.content}</View>
 												<View className='img-wrap'>
 													<Image className='con-img' src={artical.cover} />
@@ -109,7 +130,7 @@ class Spread extends Component {
 													<Image src={shareImg} className='img img-share' />
 													<Text className='title'>转发</Text>
 												</Button>
-												<View className='b-i' id={i} onClick={this.jumpDetail}>
+												<View className='b-i' id={i} onClick={this.delArtical}>
 													<Image src={delateImg} className='img img-preview' />
 													<Text className='title'>删除</Text>
 												</View>
