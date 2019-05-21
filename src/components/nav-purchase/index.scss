@@ -18,14 +18,5 @@
     font-weight: bold;
     color: #3ba9db;
     transform: translateY(-5px);
-    animation: big-letter 1 s linear;
-  }
-  @keyframes big-letter {
-    0% {
-      font-size: 34px;
-    }
-    100% {
-      font-size: 40px;
-    }
   }
 }

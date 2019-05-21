@@ -178,6 +178,14 @@ export default class Nav extends Component {
 			const provinceList = Object.values(nextProps.sjMes.province)
 			const provinceListId = Object.keys(nextProps.sjMes.province)
 			let cityArray = Object.values(nextProps.sjMes.city)
+			// this.setState({areaRange:[]})
+			if (this.state.areaRange.length !== 0) {
+				if (this.state.areaRange[0][0] == '暂无') {
+					this.setState({
+						areaRange:[]
+					})
+				}
+			}
 			if (this.state.areaRange.length < 2) {
 				let areaRange = this.state.areaRange
 				provinceList.unshift('全国')
