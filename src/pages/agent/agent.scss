@@ -8,6 +8,9 @@ page {
 		text-align: center;
 		margin-top:400px;
 	}
+	.jumpCreate {
+		@include record-no-data; 
+	}
 	.ser-and-crea {
 		display:flex;
 		justify-content:space-around;

@@ -10,6 +10,7 @@ import setImg from './assets/setting.png'
 import orderImg from './assets/order.png'
 import aboutImg from './assets/about.png'
 import logoutImg from './assets/logout.png'
+import kefuImg from './assets/kefu.png'
 import './user.scss'
 let Session = require('@utils/first-login/session')
 
@@ -100,26 +101,26 @@ class User extends Component {
 						<Text className='title'>帐号管理</Text>
 						<Image className='img' src={arrowImg} />
 					</View>
-					<View className='item' onClick={this.jumpAboutUs}>
-						<Image className='imgs' src={aboutImg} />
-						<Text className='title'>关于我们</Text>
-						<Image className='img' src={arrowImg} />
-					</View>
 					<View className='item' onClick={this.jumpOrder}>
 						<Image className='imgs' src={orderImg} />
 						<Text className='title'>我的订单</Text>
 						<Image className='img' src={arrowImg} />
 					</View>
+					<View className='item' onClick={this.jumpAboutUs}>
+						<Image className='imgs' src={aboutImg} />
+						<Text className='title'>关于我们</Text>
+						<Image className='img' src={arrowImg} />
+					</View>
+					<Button open-type='contact' className='item contact'>
+						<Image className='imgs' src={kefuImg} />
+						<Text className='title'>在线客服</Text>
+						<Image className='img' src={arrowImg} />
+					</Button>
 					<View className='item' onClick={this.logout}>
 						<Image className='imgs' src={logoutImg} />
 						<Text className='title'>退出登录</Text>
 						<Image className='img' src={arrowImg} />
 					</View>
-					<Button open-type='contact' className='item contact'>
-						<Image className='imgs' src={logoutImg} />
-						<Text className='title'>在线客服</Text>
-						<Image className='img' src={arrowImg} />
-					</Button>
 				</View>
 			</View>
 		)

@@ -142,7 +142,14 @@ class Agent extends Component {
 										<Text className='i'>{agent.createdate}</Text>
 									</View>
 						})
-					: <View className='no-agent'>没有更多的数据！</View>
+					: <View>
+							<View className='no-agent'>没有更多的数据！</View>
+							{
+								roleType == 1
+								? <View className='jumpCreate' onClick={this.jumpCreate}>创建代理商</View>
+								: <View className='jumpCreate' onClick={this.jumpCreate}>创建销售</View>
+							}
+						</View>
 				}
 			</View>
 		)

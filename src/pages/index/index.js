@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import Nav from './nav'
 import Banner from './banner'
-import banner from './assets/bann.png'
+import banner from './assets/qybb.png'
 import './index.scss'
 let Session = require('@utils/first-login/session')
 
