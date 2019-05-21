@@ -16,6 +16,7 @@ class Trade extends Component {
 	state = {
 		isAllChoose:false,
 		businessSj:[],
+		business:{},
 		chooseClientId:[],
 		page:1,
 		isAlreadyMatch:'',
@@ -123,7 +124,7 @@ class Trade extends Component {
 				pageMatch:1
 			})
 		})
-		if (!choose && !this.state.start) {
+		if (!choose && !this.state.start && !this.state.chooseProvinceId) {
 			this.setState({
 				businessSj:[]
 			})

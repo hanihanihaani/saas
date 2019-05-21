@@ -13,13 +13,13 @@ class DataAll extends Component {
   }
   state = {
     list:[{
-      name:'商机点',
+      name:'爱采购',
       id:1
     },{
       name:'订单直通车',
       id:2
     },{
-      name:'爱采购',
+      name:'商机点',
       id:3
     }],
     pageCpc:1,
@@ -42,11 +42,11 @@ class DataAll extends Component {
       endSel:endSel
     })
     if (this.state.showWho === 0) {
-      this.onGetPointTongji(val,startSel,endSel)
+      this.onGetCgtTongji(val,startSel,endSel)
     } else if (this.state.showWho === 1) {
       this.onGetCpcTongji(val,startSel,endSel)
     } else if (this.state.showWho === 2) {
-      this.onGetCgtTongji(val,startSel,endSel)
+      this.onGetPointTongji(val,startSel,endSel)
     }
   }
   onGetCpcTongji (statType,startSel,endSel) {
@@ -152,18 +152,23 @@ class DataAll extends Component {
     })
   }
   componentDidShow () {
-    this.onGetPointTongji(0,'','')
+    this.onGetCgtTongji(0,'','')
+  }
+  jumpDetail (e) {
+    let id = e.currentTarget.id
+    let sdate = this.state.cgtList[id].sdate
+    Taro.navigateTo({url:`/pages/purchase/cgt-detail?sdate=${sdate}`})
   }
   purchase (val) {
     if (val === 0) {
-      Taro.navigateTo({url:'/pages/purchase/purchase?type=1'})
+      Taro.navigateTo({url:'/pages/purchase/purchase?type=2'})
     } else if (val === 1) {
       Taro.navigateTo({url:'/pages/purchase/purchase?type=0'})
     } else if (val === 2) {
-      Taro.navigateTo({url:'/pages/purchase/purchase?type=2'})
+      Taro.navigateTo({url:'/pages/purchase/purchase?type=1'})
     }
   }
- 
+
   render () {
     const { list,showWho,cpcList,pointList,cgtList } = this.state
     return (
@@ -177,28 +182,29 @@ class DataAll extends Component {
         />
         {
           showWho === 0
-          ? <View className='point-box'>
-              <TongJiNav 
+          ? <View className='tongji-wrap'>
+              <TongJiNav
                 onChooseDay={this.onChooseDay}
-                showNav={true}
-                onScrollToLower={this.onScrollToLowerPoint}
               />
-              <ScrollView>
-                {
-                  pointList.length == 0
-                  ? <View className='no-data-box'>
-                      <RecordNoData />
-                      <View className='purchase' onClick={this.purchase.bind(this,1)}>点击购买</View>
-                    </View>
-                  : pointList.map((point,i) => {
-                      return <View className='con' key={i}>
-                                <Text className='con-item f'>{point.used_score}</Text>
-                                <Text className='con-item s'>{point.used_totle}</Text>
-                                <Text className='con-item t'>{point.remake}</Text>
-                                <Text className='con-item fo'>{point.createdate}</Text>
-                              </View>
-                  })
-                }
+              <ScrollView
+                scrollY
+                onScrollToLower={this.onScrollToLowerAcg}
+              >
+              {
+                cgtList.length == 0
+                ? <View className='no-data-box'>
+                    <RecordNoData />
+                    <View className='purchase' onClick={this.purchase.bind(this,0)}>点击购买</View>
+                  </View>
+                : cgtList.map((cgt,i) => {
+                  return <View className='con' key={i} id={i} onClick={this.jumpDetail}>
+                          <Text className='con-item f'>{cgt.hit_num}</Text>
+                          <Text className='con-item s'>{cgt.consume}</Text>
+                          <Text className='con-item t'>{cgt.per_hit_price}</Text>
+                          <Text className='con-item fo'>{cgt.sdate}</Text>
+                        </View>
+                })
+              }
               </ScrollView>
             </View>
           : ''
@@ -217,7 +223,7 @@ class DataAll extends Component {
                 cpcList.length == 0
                 ? <View className='no-data-box'>
                     <RecordNoData />
-                    <View className='purchase' onClick={this.purchase.bind(this,0)}>点击购买</View>
+                    <View className='purchase' onClick={this.purchase.bind(this,1)}>点击购买</View>
                   </View>
                 : cpcList.map((cgt,i) => {
                     return <View className='con' key={i} id={i}>
@@ -234,29 +240,28 @@ class DataAll extends Component {
         }
         {
           showWho === 2
-          ?  <View className='tongji-wrap'>
-              <TongJiNav
+          ? <View className='point-box'>
+              <TongJiNav 
                 onChooseDay={this.onChooseDay}
+                showNav={true}
+                onScrollToLower={this.onScrollToLowerPoint}
               />
-              <ScrollView
-                scrollY
-                onScrollToLower={this.onScrollToLowerAcg}
-              >
-              {
-                cgtList.length == 0
-                ? <View className='no-data-box'>
-                    <RecordNoData />
-                    <View className='purchase' onClick={this.purchase.bind(this,2)}>点击购买</View>
-                  </View>
-                : cgtList.map((cgt,i) => {
-                  return <View className='con' key={i} id={i} onClick={this.jumpDetail}>
-                          <Text className='con-item f'>{cgt.hit_num}</Text>
-                          <Text className='con-item s'>{cgt.consume}</Text>
-                          <Text className='con-item t'>{cgt.per_hit_price}</Text>
-                          <Text className='con-item fo'>{cgt.sdate}</Text>
-                        </View>
-                })
-              }
+              <ScrollView>
+                {
+                  pointList.length == 0
+                  ? <View className='no-data-box'>
+                      <RecordNoData />
+                      <View className='purchase' onClick={this.purchase.bind(this,2)}>点击购买</View>
+                    </View>
+                  : pointList.map((point,i) => {
+                      return <View className='con' key={i}>
+                                <Text className='con-item f'>{point.used_score}</Text>
+                                <Text className='con-item s'>{point.used_totle}</Text>
+                                <Text className='con-item t'>{point.remake}</Text>
+                                <Text className='con-item fo'>{point.createdate}</Text>
+                              </View>
+                  })
+                }
               </ScrollView>
             </View>
           : ''

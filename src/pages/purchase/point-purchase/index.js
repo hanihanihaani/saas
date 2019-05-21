@@ -11,7 +11,8 @@ import checkImg from '@assets/check.png'
 
 export default class PointPurchase extends Component {
   state = {
-		isSelect:10,
+		isSelect:199,
+		selectNum:200,
 		showWho:0,
 		showDay:0,
 		page:1,
@@ -51,6 +52,7 @@ export default class PointPurchase extends Component {
  		api.api(POINT_BUY,data).then(res => {
  				let that = this
  				if (res.data.state == 0) {
+					let orderId = res.data.data.water_id
  					Taro.requestPayment({
  						timeStamp:res.data.data.timeStamp,
  						nonceStr:res.data.data.nonceStr,
@@ -61,7 +63,7 @@ export default class PointPurchase extends Component {
  							Taro.navigateTo({url:'/pages/result-pay/result-pay?type=0'})
  						},
  						fail(res) {
- 							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=1&num=${that.state.selectNum}&price=${that.state.isSelect}`})
+ 							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=1&num=${that.state.selectNum}&price=${that.state.isSelect}&orderId=${orderId}`})
  						}
  					})
  				} else {

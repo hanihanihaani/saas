@@ -4,27 +4,11 @@ import { CPC_BUY,POINT_BUY,RE_BUY,BAIDU_BUY } from '@service/api'
 import api from '@service/ask'
 import waitImg from './assets/wait.png'
 import './index.scss'
-import { toASCII } from 'punycode';
 
 export default class PayFail extends Component {
-	cancel () {
-		Taro.showModal({
-			title:'提示',
-			content:'您确定要取消该订单吗',
-			confirmColor:'#333',
-		})
-			.then(res => {
-				if (res.confirm) {
-					Taro.navigateBack({delta:1})
-				}
-			})
-	}
-	payCpc (money) {
-		let data = {
-			money:money,
- 			money_type:7
-		}
-		api.api(CPC_BUY,data).then(res => {
+	payCpc (id) {
+		let data = {order_id:id}
+		api.api(RE_BUY,data).then(res => {
  				if (res.data.state == 0) {
  					Taro.requestPayment({
  						timeStamp:res.data.data.timeStamp,
@@ -36,7 +20,7 @@ export default class PayFail extends Component {
  							Taro.navigateTo({url:'/pages/result-pay/result-pay?type=0'})
  						},
  						fail(res) {
- 							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=0&money=${money}`})
+ 							// Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=0&orderId=${id}`})
  						}
  					})
  				} else {
@@ -44,12 +28,9 @@ export default class PayFail extends Component {
  				}
  			})
 	}
-	payCgt (money) {
-		let data = {
-			money:parseInt(money),
-			approach:7
-		}
-		api.api(BAIDU_BUY,data).then(res => {
+	payCgt (id) {
+		let data = {order_id:id}
+		api.api(RE_BUY,data).then(res => {
  				if (res.data.state == 0) {
  					Taro.requestPayment({
  						timeStamp:res.data.data.timeStamp,
@@ -61,7 +42,7 @@ export default class PayFail extends Component {
  							Taro.navigateTo({url:'/pages/result-pay/result-pay?type=0'})
  						},
  						fail(res) {
- 							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=3&money=${money}`})
+ 							// Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=3&orderId=${id}`})
  						}
  					})
  				} else {
@@ -69,13 +50,9 @@ export default class PayFail extends Component {
  				}
  			})
 	}
-	payPoint (num,price) {
-		let data = {
-			score_num:num,
- 			score_price:price,
- 			approach:7
-		}
-		api.api(POINT_BUY,data).then(res => {
+	payPoint (id) {
+		let data = {order_id:id}
+		api.api(RE_BUY,data).then(res => {
  				if (res.data.state == 0) {
  					Taro.requestPayment({
  						timeStamp:res.data.data.timeStamp,
@@ -87,7 +64,7 @@ export default class PayFail extends Component {
  							Taro.navigateTo({url:'/pages/result-pay/result-pay?type=0'})
  						},
  						fail(res) {
- 							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=1&num=${num}&price=${price}`})
+ 							// Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=1&orderId=${id}`})
  						}
  					})
  				} else {
@@ -111,7 +88,7 @@ export default class PayFail extends Component {
  							Taro.navigateTo({url:'/pages/result-pay/result-pay?type=0'})
  						},
  						fail(res) {
- 							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&id=${id}`})
+ 							// Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&orderId=${id}`})
  						}
  					})
 				} else {
@@ -125,15 +102,36 @@ export default class PayFail extends Component {
 			typeService:this.props.typeService,
 		})
 	}
+	cancel () {
+		let that = this
+		Taro.showModal({
+			title:'提示',
+			content:'您确定要取消该订单吗',
+			confirmColor:'#333',
+		})
+			.then(res => {
+				if (res.confirm) {
+					if (this.state.typeService == 0) {
+						Taro.redirectTo({url:'/pages/purchase/purchase?type=0'})
+					} else if (this.state.typeService == 1) {
+						Taro.redirectTo({url:'/pages/purchase/purchase?type=1'})
+					} else if (this.state.typeService == 2) {
+						Taro.redirectTo({url:'/pages/order/order'})
+					} else if (this.state.typeService == 3) {
+						Taro.redirectTo({url:'/pages/purchase/purchase?type=2'})
+					}
+				}
+			})
+	}
 	pay () {
 		if (this.state.typeService == 0) {
-			this.payCpc(this.props.money)
+			this.payCpc(this.props.orderId)
 		} else if (this.state.typeService == 1) {
-			this.payPoint(this.props.num,this.props.price)
+			this.payPoint(this.props.orderId)
 		} else if (this.state.typeService == 2) {
 			this.goPay(this.props.orderId)
 		} else if (this.state.typeService == 3) {
-			this.payCgt(this.props.money)
+			this.payCgt(this.props.orderId)
 		}
 	}
 	render () {

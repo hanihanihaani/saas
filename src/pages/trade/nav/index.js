@@ -28,7 +28,8 @@ export default class Nav extends Component {
 		 filterCon:'筛选',
 		 page:1,
 		 businessSj:[],
-		 isChooseWho:0
+		 isChooseWho:0,
+		 isFirstShow:1
 	}
 	onChange (e) {
 		this.setState({
@@ -86,7 +87,8 @@ export default class Nav extends Component {
 				startdate:this.state.startSel,
 				enddate:this.state.endSel,
 				provinceid:chooseProvinceId,
-				city:chooseCityId
+				city:chooseCityId,
+				page:this.state.page
 		}
 		api.api(BUSINESS_LIST,data).then((res) => {
 			if (res.data.state == 1) {
@@ -158,21 +160,24 @@ export default class Nav extends Component {
 		}
 	}
 	onAreaChange (e) {
-		let chooseProvinceId = this.state.provinceListId[e.detail.value[0]-1]
-		let chooseCityId = this.state.cityChooseListId[e.detail.value[1]]
-		this.setState({
-			areaIndex:e.detail.value,
-			chooseProvinceId:chooseProvinceId,
-			chooseCityId:chooseCityId
-		})
-		this.getAreaBusiness(chooseProvinceId,chooseCityId)
+		if (this.state.cityChooseListId) {
+			let chooseProvinceId = this.state.provinceListId[e.detail.value[0]-1]
+			let chooseCityId = this.state.cityChooseListId[e.detail.value[1]]
+			this.setState({
+				areaIndex:e.detail.value,
+				chooseProvinceId:chooseProvinceId,
+				chooseCityId:chooseCityId,
+			})
+			this.getAreaBusiness(chooseProvinceId,chooseCityId)
+		} else {
+			this.getAreaBusiness('','')
+		}
 	}
-	componentDidShow () {
-		console.log('s',this.props.sjMes)
-		if (Object.keys(this.props.sjMes).length !== 0) {
-			const provinceList = Object.values(this.props.sjMes.province)
-			const provinceListId = Object.keys(this.props.sjMes.province)
-			let cityArray = Object.values(this.props.sjMes.city)
+	componentWillReceiveProps(nextProps) {
+		if (Object.keys(nextProps.sjMes).length !== 0) {
+			const provinceList = Object.values(nextProps.sjMes.province)
+			const provinceListId = Object.keys(nextProps.sjMes.province)
+			let cityArray = Object.values(nextProps.sjMes.city)
 			if (this.state.areaRange.length < 2) {
 				let areaRange = this.state.areaRange
 				provinceList.unshift('全国')
@@ -191,29 +196,6 @@ export default class Nav extends Component {
 			})
 		}
 	}
-	// componentWillReceiveProps(nextProps) {
-	// 	if (Object.keys(nextProps.sjMes).length !== 0) {
-	// 		const provinceList = Object.values(nextProps.sjMes.province)
-	// 		const provinceListId = Object.keys(nextProps.sjMes.province)
-	// 		let cityArray = Object.values(nextProps.sjMes.city)
-	// 		if (this.state.areaRange.length < 2) {
-	// 			let areaRange = this.state.areaRange
-	// 			provinceList.unshift('全国')
-	// 			areaRange.push(provinceList)
-	// 			areaRange.push(['全国'])
-	// 			// areaRange.push(cityChooseList)
-	// 			this.setState({
-	// 				provinceListId:provinceListId,
-	// 				cityArray:cityArray,
-	// 				areaRange:areaRange
-	// 			})
-	// 		}
-	// 	} else {
-	// 		this.setState({
-	// 			areaRange:[['暂无'],['暂无']]
-	// 		})
-	// 	}
-	// }
 	render () {
 		const { isShowTime, isShowFilter, areaIndex, areaRange, filterCon, isChooseWho } = this.state
 		const { roleType } = this.props

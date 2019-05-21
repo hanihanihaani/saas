@@ -89,25 +89,43 @@ class ChoosePer extends Component {
 			Taro.navigateTo({url:'/pages/agent/create-agent?roleType=10'})
 		}
 	}
+	togglenav (val) {
+		this.setState({showItem:val})
+	}
 	render () {
 		const { choosePerList,isChoose,roleType,showItem } = this.state
 		let  height = `${Taro.getSystemInfoSync().windowHeight-90}px`
-
+		//代理商
 		let perItem = choosePerList.map((per,i) => {
-			return <View className='per-item' key={i} id={i} onClick={this.selectPer.bind(this,i)}>
-							<View className='item choose-img'>
-								<Image className='c-img' src={isChoose === i ? chooseImg : unChooseImg} />
+			if (per.role_type === '1') {
+				return <View className='per-item' key={i} id={i} onClick={this.selectPer.bind(this,i)}>
+								<View className='item choose-img'>
+									<Image className='c-img' src={isChoose === i ? chooseImg : unChooseImg} />
+								</View>
+								<Text className='item name'>{per.corpname}</Text>
+								<Text className='item area'>{per.city}</Text>
+								<Text className='item phone'>{per.username}</Text>
 							</View>
-							<Text className='item name'>{per.corpname}</Text>
-							<Text className='item area'>{per.city}</Text>
-							<Text className='item phone'>{per.username}</Text>
-						</View>
+			}
+		})
+		//销售
+		let perItems = choosePerList.map((per,i) => {
+			if (per.role_type === '10') {
+				return <View className='per-item' key={i} id={i} onClick={this.selectPer.bind(this,i)}>
+								<View className='item choose-img'>
+									<Image className='c-img' src={isChoose === i ? chooseImg : unChooseImg} />
+								</View>
+								<Text className='item name'>{per.corpname}</Text>
+								<Text className='item area'>{per.city}</Text>
+								<Text className='item phone'>{per.username}</Text>
+							</View>
+			}
 		})
 		return (
 			<View className='choose-per'>
 				<View className='choose-nav'>
-					<Text className='item'>代理商</Text>
-					<Text className='item'>销售</Text>
+					<Text className={showItem === 0 ? 'active' : ''} onClick={this.togglenav.bind(this,0)}>代理商</Text>
+					<Text className={showItem === 1 ? 'active' : ''} onClick={this.togglenav.bind(this,1)}>销售</Text>
 				</View>
 				<ScrollView 
 					scrollY 
@@ -128,7 +146,7 @@ class ChoosePer extends Component {
 									<View className='btn' id='10' onClick={this.jumpCreate}>创建销售</View>
 								</View>
 							</View>
-						: perItem
+						: showItem === 0 ? perItem : perItems
 					}
 				</ScrollView>
 				{

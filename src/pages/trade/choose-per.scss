@@ -7,6 +7,16 @@ page {
 		.choose-nav {
 			display: flex;
 			justify-content: space-around;
+			color: #666;
+			font-size: 34px;
+			background: #fff;
+			height: 84px;
+			line-height: 84px;
+			.active {
+				color: #3ba9db;
+				font-size: 40px;
+				transform: translateY(-5px);
+			}								
 		}
 		.no-data-wrap {
 			.now-no {

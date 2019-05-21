@@ -11,7 +11,7 @@ import checkImg from '@assets/check.png'
 
 export default class CpcPurchase extends Component {
   state = {
-		isSelect:10,
+		isSelect:3000,
 		showWho:0,
 		showDay:0,
 		page:1,
@@ -92,17 +92,18 @@ export default class CpcPurchase extends Component {
  		api.api(CPC_BUY,data).then(res => {
  				let that = this
  				if (res.data.state == 0) {
- 					Taro.requestPayment({
+					let orderId = res.data.data.water_id
+					Taro.requestPayment({
  						timeStamp:res.data.data.timeStamp,
  						nonceStr:res.data.data.nonceStr,
  						package:res.data.data.package,
  						signType:res.data.data.signType,
- 						paySign:res.data.data.paySign,
+						paySign:res.data.data.paySign,
  						success(res) {
  							Taro.navigateTo({url:'/pages/result-pay/result-pay?type=0'})
  						},
  						fail(res) {
- 							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=0&money=${that.state.isSelect}`})
+ 							Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=0&money=${that.state.isSelect}&orderId=${orderId}`})
  						}
  					})
  				} else {

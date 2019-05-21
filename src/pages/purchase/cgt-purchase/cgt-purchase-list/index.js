@@ -9,7 +9,7 @@ export default class CgtPurchaseList extends Component {
     corpus_balance:''
   }
   state = {
-    isSelect:10,
+    isSelect:4000,
     showWran:false
   }
  	selectMoney (key) {
@@ -42,6 +42,7 @@ export default class CgtPurchaseList extends Component {
     if (parseFloat(this.state.isSelect) > 1000 && Number.isInteger(parseFloat(this.state.isSelect))) {
       api.api(BAIDU_BUY,data).then(res => {
         if (res.data.state == 1) {
+          let orderId = res.data.data.water_id
           Taro.requestPayment({
             timeStamp:res.data.data.timeStamp,
             nonceStr:res.data.data.nonceStr,
@@ -52,7 +53,7 @@ export default class CgtPurchaseList extends Component {
               Taro.navigateTo({url:'/pages/result-pay/result-pay?type=0'})
             },
             fail(res) {
-              Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=3&money=${that.state.isSelect}`})
+              Taro.navigateTo({url:`/pages/result-pay/result-pay?type=1&typeService=3&orderId=${orderId}`})
             }
           })
         }

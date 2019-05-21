@@ -54,6 +54,13 @@ page {
 		}
 		.item-wrap {
 			margin-top:85px;
+			.contact {
+				padding: 0;
+				text-align: left;
+				&::after{
+					border: none;
+				}
+			}
 			.item {
 				position:relative;
 				margin-bottom:2px;
@@ -62,7 +69,7 @@ page {
 				height:84px;
 				line-height:84px;
 				color:#333;
-				font-size:28px;
+				font-size:30px;
 				box-sizing:border-box;
 				padding-left:28px;
 				.imgs {

@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Button } from '@tarojs/components'
 import { PERSON_INFO,LOGOUT } from '@service/api'
 import api from '@service/ask'
 import { set as setGlobalData, get as getGlobalData } from '@utils/global_data.js'
@@ -115,6 +115,11 @@ class User extends Component {
 						<Text className='title'>退出登录</Text>
 						<Image className='img' src={arrowImg} />
 					</View>
+					<Button open-type='contact' className='item contact'>
+						<Image className='imgs' src={logoutImg} />
+						<Text className='title'>在线客服</Text>
+						<Image className='img' src={arrowImg} />
+					</Button>
 				</View>
 			</View>
 		)

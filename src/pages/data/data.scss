@@ -1,5 +1,7 @@
 @import '../../styles/mixins.scss';
-
+page {
+  padding: 0;
+}
 .cpc-box {
   padding: 0 30px;
   .con {

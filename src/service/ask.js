@@ -8,7 +8,12 @@ export default {
 				url:url,
 				method:'POST',
 				header:{'x-wx-skey':Session.get().skey},
-				data:data
+				data:data,
+				success:function (res) {
+					if (res.data.state == '30001') {
+						Taro.navigateTo({url:'/pages/first-login/first-login'})
+					}
+				}
 			})
 		} else {
 			Taro.navigateTo({url:'/pages/first-login/first-login'})

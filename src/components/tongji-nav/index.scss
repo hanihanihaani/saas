@@ -58,13 +58,14 @@
 }
 .date-select {
   position: absolute;
-  top:20%;
+  top:50%;
   left: 50%;
-  margin-left: -300px;
-  width: 600px;
-  height: 350px;
+  margin-left: -290px;
+  margin-top: -170px;
+  width: 580px;
+  height: 340px;
   background:#fff;
-  border: 20px;
+  border-radius: 8px;
   z-index: 1000;
   .select-con {
     display:flex;

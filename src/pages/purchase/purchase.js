@@ -16,7 +16,7 @@ class Purchase extends Component {
   	} else if (this.state.type == 1) {
   		Taro.setNavigationBarTitle({title:'商机点购买'})
   	} else if (this.state.type == 2) {
-  		Taro.setNavigationBarTitle({title:'采购通'})
+  		Taro.setNavigationBarTitle({title:'爱采购'})
 		}
   }
 	render () {

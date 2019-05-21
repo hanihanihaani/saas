@@ -16,7 +16,8 @@ class Artical extends Component {
 		title:'',
 		content:'',
 		author:'',
-		imgUrl:''
+		imgUrl:'',
+		id:''
 	}
 	// 判断汉字长度
 	getByLen (val) {
@@ -80,37 +81,41 @@ class Artical extends Component {
     })
 	}
 	issue () {
-		if (this.state.title) {
-			if (this.state.author) {
-				if (this.state.content) {
-					if (this.state.imgUrl) {
-						let data = {
-							title:this.state.title,
-							content:this.state.content,
-							author:this.state.author,
-							cover:this.state.imgUrl
-						}
-						api.api(ISSUE_ARTICAL,data).then(res => {
-							if (res.data.state == 0) {
-								Taro.showToast({title:'发布成功',icon:'none'})
-								setTimeout(() => {
-									Taro.redirectTo({url:'/pages/spread/spread'})
-								},1000)
-							} else {
-								Taro.showToast({title:res.data.msg,icon:'none'})
+		if (!this.state.id) {
+			if (this.state.title) {
+				if (this.state.author) {
+					if (this.state.content) {
+						if (this.state.imgUrl) {
+							let data = {
+								title:this.state.title,
+								content:this.state.content,
+								author:this.state.author,
+								cover:this.state.imgUrl
 							}
-						})
+							api.api(ISSUE_ARTICAL,data).then(res => {
+								if (res.data.state == 0) {
+									Taro.showToast({title:'保存成功',icon:'none'})
+									setTimeout(() => {
+										Taro.redirectTo({url:'/pages/spread/spread'})
+									},1000)
+								} else {
+									Taro.showToast({title:res.data.msg,icon:'none'})
+								}
+							})
+						} else {
+							Taro.showToast({title:'请选择封面',icon:'none'})
+						}
 					} else {
-						Taro.showToast({title:'请选择封面',icon:'none'})
+						Taro.showToast({title:'请输入内容',icon:'none'})
 					}
 				} else {
-					Taro.showToast({title:'请输入内容',icon:'none'})
+					Taro.showToast({title:'请输入作者',icon:'none'})
 				}
 			} else {
-				Taro.showToast({title:'请输入作者',icon:'none'})
+				Taro.showToast({title:'请输入标题',icon:'none'})
 			}
 		} else {
-			Taro.showToast({title:'请输入标题',icon:'none'})
+			Taro.navigateTo({url:'/pages/spread/spread'})
 		}
 	}
 	update () {
@@ -177,6 +182,7 @@ class Artical extends Component {
 						api.api(ISSUE_ARTICAL,data).then(res => {
 							if (res.data.state == 0) {
 								let id = res.data.data.id
+								this.setState({id:id})
 								Taro.navigateTo({url:`/pages/artical/detail?id=${id}&showBtn=1`})
 							} else {
 								Taro.showToast({title:res.data.msg,icon:'none'})

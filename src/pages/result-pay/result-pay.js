@@ -15,17 +15,22 @@ class ResultPay extends Component {
 		let id = this.$router.params.orderId
 		if (typeService == 0) {
 			this.setState({
-				money:this.$router.params.money
+				money:this.$router.params.money,
+				id:id
 			})
 		} else if (typeService == 1) {
 			this.setState({
 				price:this.$router.params.price,
-				num:this.$router.params.num
+				num:this.$router.params.num,
+				id:id
 			})
 		} else if (typeService == 2) {
 			this.setState({id:id})
 		} else if (typeService == 3) {
-			this.setState({money:this.$router.params.money})
+			this.setState({
+				money:this.$router.params.money,
+				id:id
+			})
 		}
 		this.setState({
 			type:type,

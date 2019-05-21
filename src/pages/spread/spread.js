@@ -25,13 +25,12 @@ class Spread extends Component {
 		let list = this.state.articalList
 		api.api(ARTICAL_LIST,data).then(res => {
 			if (res.data.state == 0) {
+				if (res.data.data) {
+
+				}
 				if (res.data.data.result) {
-					if (that.state.page == 1) {
-						that.setState({articalList:res.data.data.result})
-					} else {
 						Taro.hideLoading()
 						that.setState({articalList:list.concat(res.data.data.result)})
-					}
 				} else {
 					Taro.showToast({title:'没有更多了',icon:'none'})
 				}
