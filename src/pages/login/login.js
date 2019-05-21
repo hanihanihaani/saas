@@ -57,7 +57,7 @@ class Login extends Component {
         {tabCon}
         <View className='zw-wrap'>
           <Text className='new-user' onClick={this.jumpForget}>忘记密码</Text>
-          <Text className='new-user' onClick={this.jumpNew}>注册</Text>
+          {/* <Text className='new-user' onClick={this.jumpNew}>注册</Text> */}
         </View>
       </View>
     )

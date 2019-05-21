@@ -111,7 +111,7 @@ class PhoneLogin extends Component {
             />
           <Text className={`i-code ${isActive ? 'active' : ''}`} onClick={this.getCode}>{time}</Text>
         </View>
-        <Text className='btn' onClick={this.handleLogin}>登录</Text>
+        <Text className='btn' onClick={this.handleLogin}>直接绑定</Text>
       </View>
     )
   }
