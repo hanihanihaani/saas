@@ -86,6 +86,7 @@ export default class CgtPurchaseList extends Component {
             onInput={this.handleInput.bind(this,'isSelect')}
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
+            placeholder='输入金额'
           />
 				</View>
 				<View className='purchase-now' onClick={this.cgtBuy}>立即购买</View>

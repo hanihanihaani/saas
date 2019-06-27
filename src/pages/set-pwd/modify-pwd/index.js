@@ -25,11 +25,11 @@ export default class ModifyPwd extends Component {
 		let data = {
 				opassword:this.state.pwdy,
 				password:this.state.pwd,
-				rePassword:this.state.confirmPwd
+				repassword:this.state.confirmPwd
 		}
-		if (pwdy) {
-			if (pwd) {
-					if (confirmPwd) {
+		if (this.state.pwdy) {
+			if (this.state.pwd) {
+					if (this.state.confirmPwd) {
 						api.api(MODIFY_PWD,data).then(res => {
 							Taro.showToast({title:res.data.msg,icon:'none'})
 						}) 
@@ -72,7 +72,7 @@ export default class ModifyPwd extends Component {
 					<Input 
 						type='password' 
 						className='input' 
-						placeholder='请再次输入新密码' 
+						placeholder='请再次输入新密码(数字和字母的组合)' 
 						value={confirmPwd}
 						onBlur={this.checkPwd}
 						onInput={this.handleInput.bind(this,'confirmPwd')}

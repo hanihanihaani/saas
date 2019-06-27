@@ -27,12 +27,20 @@ class Spread extends Component {
 			if (res.data.state == 0) {
 				if (res.data.data.result) {
 					if (res.data.data.result.length !== 0) {
-						Taro.hideLoading()
-						that.setState({articalList:list.concat(res.data.data.result)})
+						if (this.state.page == 1) {
+							this.setState({articalList:res.data.data.result
+							})
+						} else {
+							Taro.hideLoading()
+							that.setState({articalList:list.concat(res.data.data.result)})
+						}
 					} else {
 						Taro.showToast({title:'没有更多了',icon:'none'})
 					}
-				} 
+				} else {
+					Taro.hideLoading()
+					Taro.showToast({title:'没有更多了',icon:'none'})
+				}
 			}
 		})
 	}
@@ -46,14 +54,14 @@ class Spread extends Component {
 			})
 		},500)
 	}
-	jumpArtical (e) {
-		let id = this.state.articalList[e.currentTarget.id].id
-		Taro.navigateTo({url:`/pages/artical/artical?id=${id}`})
-	}
-	// jumpDetail (e) {
+	// jumpArtical (e) {
 	// 	let id = this.state.articalList[e.currentTarget.id].id
-	// 	Taro.navigateTo({url:`/pages/artical/detail?id=${id}`})
+	// 	Taro.navigateTo({url:`/pages/artical/artical?id=${id}`})
 	// }
+	jumpDetail (e) {
+		let id = this.state.articalList[e.currentTarget.id].id
+		Taro.navigateTo({url:`/pages/artical/detail?id=${id}`})
+	}
 	jumpArticals () {
 		Taro.navigateTo({url:'/pages/artical/artical'})
 	}
@@ -69,7 +77,9 @@ class Spread extends Component {
 					api.api(DEL_ARTICAL,data).then(res => {
 						if (res.data.state == 1) {
 							Taro.showToast({title:'删除成功',icon:'none'})
-							that.getArticalList()
+							setTimeout(() => {
+								that.getArticalList()
+							},500)
 						} else {
 							Taro.showToast({title:res.data.msg,icon:'none'})
 						}
@@ -113,8 +123,8 @@ class Spread extends Component {
 					{
 						articalList.map((artical,i) => {
 							return <View className='item-wrap' key={i}>
-											<View className='top' id={i} onClick={this.jumpArtical}> 
-												<View className='con'>{artical.content}</View>
+											<View className='top' id={i} onClick={this.jumpDetail}> 
+												<View className='con'>{artical.title}</View>
 												<View className='img-wrap'>
 													<Image className='con-img' src={artical.cover} />
 												</View>

@@ -117,6 +117,9 @@ class Trade extends Component {
 	componentDidShow () {
 		let toCorpName = getGlobalData('toCorpName')
 		let choose = Taro.getStorageSync('choose')
+		let isLogout = getGlobalData('isLogout')
+		console.log('isLougt',isLogout)
+		console.log('start',this.state.start)
 		setTimeout(() => {
 			this.setState({
 				loaded:true,
