@@ -54,10 +54,18 @@ class Spread extends Component {
 			})
 		},500)
 	}
-	// jumpArtical (e) {
-	// 	let id = this.state.articalList[e.currentTarget.id].id
-	// 	Taro.navigateTo({url:`/pages/artical/artical?id=${id}`})
-	// }
+	jumpArtical (e) {
+		let id = this.state.articalList[e.currentTarget.id].id
+		let richType = this.state.articalList[e.currentTarget.id].rich_type
+		if (richType == 1) {
+			Taro.showModal({
+				title:'温馨提示',
+				content:'请到http://www.baidu.com去下载app进行编辑'
+			})
+		} else if (richType == 0) {
+			Taro.navigateTo({url:`/pages/artical/artical?id=${id}`})
+		}
+	}
 	jumpDetail (e) {
 		let id = this.state.articalList[e.currentTarget.id].id
 		Taro.navigateTo({url:`/pages/artical/detail?id=${id}`})

@@ -2,8 +2,10 @@ import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Image,Button } from '@tarojs/components'
 import { ARTICAL_DETAIL } from '@service/api'
 import { Navigation } from '@components/nav'
+import WxParse from '@utils/wxParse/wxParse'
 import api from '@service/ask'
 import './detail.scss'
+
 
 class Detail extends Component {
   config = {
@@ -14,7 +16,7 @@ class Detail extends Component {
     id:'',
     showBtn:''
   }
-  componentWillMount () {
+  componentDidMount () {
     let id = this.$router.params.id
     let showBtn = this.$router.params.showBtn
     let data = {id:id}
@@ -24,6 +26,8 @@ class Detail extends Component {
     })
     api.api(ARTICAL_DETAIL,data).then(res => {
       if (res.data.state == 0) {
+        const article = res.data.data.content
+        WxParse.wxParse('article','html',article,this.$scope,15)
         this.setState({
           artical:res.data.data
         })
@@ -49,8 +53,16 @@ class Detail extends Component {
   }
   render () {
     const { artical,showBtn } = this.state
+    const statusHeight = Taro.getSystemInfoSync().statusBarHeight
+    let navHeight
+    let isIos = Taro.getSystemInfoSync().system.indexOf('ios') > -1
+    if (!isIos) {
+      navHeight = 48
+    } else {
+      navHeight = 44
+    }
     return (
-      <View className='detail'>
+      <View className='detail' style={{paddingTop:`${statusHeight + navHeight}Px`}}>
         <Navigation />
         <View className='detail-box'>
           <View className='title'>{artical.title}</View>
@@ -58,8 +70,10 @@ class Detail extends Component {
             <Text>{artical.author}</Text>
             <Text className='time'>{artical.createtime}</Text>
           </View>
-          <View><Image className='img' src={artical.cover} /></View>
-          <View className='content'>{artical.content}</View>
+          <View className='parse-wrap'>
+            <import src='../../utils/wxParse/wxParse.wxml' />
+            <template is='wxParse' data='{{wxParseData:article.nodes}}' />
+          </View>
         </View>
         {
           showBtn == 1

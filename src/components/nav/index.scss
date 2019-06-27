@@ -1,5 +1,7 @@
 .navigation {
-  position: relative;
+  position: fixed;
+  width: 100%;
+  top:0;
   background: #3ba9db;
   .navigation-box {
     display: flex;
